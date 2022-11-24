@@ -185,6 +185,14 @@
 	icon_state = "tunic_[mycolor]"
 	name = "[mycolor] [initial(name)]"
 
+/obj/item/clothing/under/tunic/smith
+	name = "smiths tunic"
+	desc = "A sleeveless tunic used by dwarven smiths. Smells of sweat."
+	worn_icon = 'dwarfs/icons/mob/clothing/under.dmi'
+	worn_icon_state = "tunic_smith"
+	icon = 'dwarfs/icons/items/clothing/under.dmi'
+	icon_state = "tunic_smith"
+
 /obj/item/clothing/under/loincloth
 	name = "loincloth"
 	desc = "A few pieces of fabric barely holding together."
