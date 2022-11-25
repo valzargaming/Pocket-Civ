@@ -72,6 +72,7 @@
 
 /datum/outfit/dwarf
 	name = "Dwarf"
+	uniform = /obj/item/clothing/under/tunic/random
 	belt = /obj/item/flashlight/fueled/lantern
 	shoes = /obj/item/clothing/shoes/boots
 
@@ -82,34 +83,29 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 */
 /datum/outfit/dwarf/miner
 	name = "Dwarf miner"
-	uniform = /obj/item/clothing/under/tunic/random
 	back = /obj/item/pickaxe
 	l_hand = /obj/item/shovel
 	apply_grade = TRUE
 
 /datum/outfit/dwarf/farmer
 	name = "Dwarf farmer"
-	uniform = /obj/item/clothing/under/tunic/random
 	r_hand = /obj/item/hoe
 	head = /obj/item/reagent_containers/glass/bucket
 	apply_grade = TRUE
 
 /datum/outfit/dwarf/logger
 	name = "Dwarf logger"
-	uniform = /obj/item/clothing/under/tunic/random
 	back = /obj/item/axe
 	apply_grade = TRUE
 
 /datum/outfit/dwarf/mason
 	name = "Dwarf mason"
-	uniform = /obj/item/clothing/under/tunic/random
 	l_pocket = /obj/item/chisel
 	r_pocket = /obj/item/trowel
 	apply_grade = TRUE
 
 /datum/outfit/dwarf/chef
 	name = "Dwarf chef"
-	uniform = /obj/item/clothing/under/tunic/random
 	r_hand = /obj/item/kitchen/knife
 	l_hand = /obj/item/kitchen/rollingpin
 	apply_grade = TRUE
@@ -123,13 +119,11 @@ If you want them to actuely show up, go to code\modules\client\preferences.dm on
 
 /datum/outfit/dwarf/builder
 	name = "Dwarf builder"
-	uniform = /obj/item/clothing/under/tunic/random
 	r_hand = /obj/item/builder_hammer
 	l_hand = /obj/item/trowel
 	apply_grade = TRUE
 
 /datum/outfit/dwarf/king
 	name = "Dwarf King"
-	uniform = /obj/item/clothing/under/tunic/random
 	head = /obj/item/clothing/head/helmet/dwarf_crown
 	apply_grade = TRUE
