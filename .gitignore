@@ -200,3 +200,4 @@ Temporary Items
 # Autowiki
 /tools/autowiki/node_modules
 SQL/whitelist.txt
+SQL/bans.txt
