@@ -140,7 +140,7 @@
 	icon_state = "lantern_parts"
 
 /obj/item/partial/spear
-	name = "spear head"
+	name = "boar spear head"
 	icon_state = "spear_head"
 
 /obj/item/partial/halberd

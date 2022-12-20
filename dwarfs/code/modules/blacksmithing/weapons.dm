@@ -3,8 +3,8 @@
 	desc = "A long sword, made too big for a dwarf to wield it easily."
 	icon = 'dwarfs/icons/items/weapons.dmi'
 	icon_state = "zweihander"
-	righthand_file = 'dwarfs/icons/mob/inhand/righthand_96x32.dmi'
-	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand_96x32.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand_96x64.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand_96x64.dmi'
 	inhand_icon_state = "zweihander"
 	inhand_x_dimension = -32
 	force = 30
@@ -113,14 +113,15 @@
 	user.changeNext_move(1 SECONDS)
 
 /obj/item/spear
-	name = "spear"
-	desc = "Spears usually found in dwarven hold barracks but make a great weapon to keep a bigger enemy at the distance."
+	name = "boar spear"
+	desc = "Spears usually found in dwarven hunting guilds but make a great weapon to keep a bigger enemy at the distance."
 	icon = 'dwarfs/icons/items/weapons.dmi'
-	icon_state = "spear"
-	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
-	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	icon_state = "boarspear"
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand_96x64.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand_96x64.dmi'
 	worn_icon = 'dwarfs/icons/mob/clothing/back.dmi'
-	inhand_icon_state = "spear"
+	inhand_icon_state = "boarspear"
+	inhand_x_dimension = -32
 	slot_flags = ITEM_SLOT_BACK
 	force = 20
 	throwforce = 30
@@ -135,7 +136,7 @@
 
 /obj/item/spear/Initialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=5, use_grades=TRUE, inhand_icon_wielded="spear_w")
+	AddComponent(/datum/component/two_handed, force_unwielded=5, use_grades=TRUE, inhand_icon_wielded="boarspear_w")
 
 /obj/item/spear/afterattack(atom/target, mob/user, proximity)
 	. = ..()
@@ -147,8 +148,9 @@
 	name = "warhammer"
 	desc = "Warhammer makes a great choice for the dwarven warrior. As a natural miners and blacksmiths - it have all same principes of use as common dwarven tools."
 	icon = 'dwarfs/icons/items/weapons.dmi'
-	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
-	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand_96x64.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand_96x64.dmi'
+	inhand_x_dimension = -32
 	icon_state = "warhammer"
 	w_class = WEIGHT_CLASS_HUGE
 	atck_type = BLUNT
@@ -171,9 +173,10 @@
 	desc = "Pointy stick with bladee. Robustester."
 	icon = 'dwarfs/icons/items/weapons.dmi'
 	icon_state = "halberd"
-	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
-	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	righthand_file = 'dwarfs/icons/mob/inhand/righthand_96x64.dmi'
+	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand_96x64.dmi'
 	inhand_icon_state = "halberd"
+	inhand_x_dimension = -32
 	slot_flags = ITEM_SLOT_BACK
 	force = 20
 	throwforce = 5
