@@ -49,7 +49,7 @@
 	result = /obj/item/partial/smithing_hammer
 
 /datum/smithing_recipe/spear
-	name = "\[part\] spear"
+	name = "\[part\] boar spear"
 	result = /obj/item/partial/spear
 
 /datum/smithing_recipe/halberd
@@ -159,7 +159,7 @@
 	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/partial/sword=1, /obj/item/weapon_hilt=1)
 
 /datum/workbench_recipe/spear
-	name = "spear"
+	name = "boar spear"
 	result = /obj/item/spear
 	reqs = list(/obj/item/stack/sheet/leather = 1, /obj/item/partial/spear =1, /obj/item/stick=1)
 
