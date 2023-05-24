@@ -44,6 +44,9 @@ GLOBAL_LIST_INIT(plank_recipes, list (
 	merge_type = /obj/item/stack/sheet/bark
 	righthand_file = 'dwarfs/icons/mob/inhand/righthand.dmi'
 	lefthand_file = 'dwarfs/icons/mob/inhand/lefthand.dmi'
+	
+/obj/item/stack/sheet/bark/get_fuel()
+	return 5 * amount
 
 /obj/structure/lattice
 	name = "wooden lattice"

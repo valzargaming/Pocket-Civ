@@ -86,7 +86,7 @@
 
 /datum/skill/combat/spear
 	name = "Spear Combat"
-	desc = "Spear - too long for a dwarf to use easily, provides a great piercing force at the great distance. Increases spears combat stats"
+	desc = "Spear - too useful for a goblin to use easily, provides a great piercing force at the great distance. Increases spears combat stats"
 	title = "Speardwarf"
 	modifiers = list(
 			SKILL_MISS_MODIFIER=list(15, 13, 11, 9, 7, 5, 3, 0, 0, 0, 0),
