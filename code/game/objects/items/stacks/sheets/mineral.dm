@@ -42,6 +42,17 @@ Mineral Sheets
 	// inhand_icon_state = "sheet-ruby"
 	singular_name = "ruby"
 	merge_type = /obj/item/stack/sheet/mineral/gem/ruby
+	
+/obj/item/stack/sheet/mineral/gem/glowgem
+	name = "glowgem"
+	icon = 'dwarfs/icons/items/ores_gems.dmi'
+	icon_state = "glowgem"
+	// inhand_icon_state = "sheet-glowgem" (Not used?)
+	singular_name = "glowgem"
+	merge_type = /obj/item/stack/sheet/mineral/gem/glowgem
+	light_color = "#00ffff"
+	light_power = 1
+	light_range = 5
 
 /*
  * Gold
