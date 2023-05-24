@@ -117,6 +117,20 @@
 	ore_icon = 'dwarfs/icons/turf/ores/ruby.dmi'
 	ore_basename = "ruby"
 	vein_type = /datum/vein/cluster
+	
+/obj/item/stack/ore/gem/glowgem
+	name = "Glow Gem"
+	icon_state = "glowgem_uncut"
+	// inhand_icon_state = "Diamond ore" This is commmented out of everything currently i guess?
+	singular_name = "uncut glowgem"
+	cut_type = /obj/item/stack/sheet/mineral/gem/glowgem
+	mine_experience = 10
+	merge_type = /obj/item/stack/ore/gem/glowgem
+	ore_icon = 'dwarfs/icons/turf/ores/glowgem.dmi'
+	ore_basename = "glowgem"
+	light_color = "#00ffff"
+	light_power = 1.5
+	light_range = 1.5
 
 /obj/item/stack/ore/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	. = ..()
