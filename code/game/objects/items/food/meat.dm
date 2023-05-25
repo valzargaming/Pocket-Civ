@@ -21,3 +21,8 @@
 
 /obj/item/food/meat/slab/troll/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/slice/meat/troll, 3, 2 SECONDS)
+	
+/obj/item/food/meat/slab/crab
+	name = "crab meat"
+	desc = "A hunk of meat from our cavern dwelling brown friends. Best with cave wheat and plump helmets"
+	icon_state = "crab_meat"

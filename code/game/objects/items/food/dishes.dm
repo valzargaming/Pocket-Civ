@@ -63,6 +63,14 @@
 	plate_type = /obj/item/reagent_containers/glass/plate/regular
 	food_reagents = list(/datum/reagent/consumable/nutriment=250)
 	mood_event_type = /datum/mood_event/ate_meal/decent
+	
+/obj/item/food/dish/crab_cakes
+	name = "crab cakes"
+	desc = "Hearty little meat cakes. Get em' while they're hot!"
+	icon_state = "crab_cakes"
+	plate_type = /obj/item/reagent_containers/glass/plate/regular
+	food_reagents = list(/datum/reagent/consumable/nutriment=250)
+	mood_event_type = /datum/mood_event/ate_meal/decent
 
 //**********************THIRD TIER DISHES*****************************//
 

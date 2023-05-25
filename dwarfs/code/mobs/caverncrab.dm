@@ -13,7 +13,7 @@
 	faction = list("mining")
 	weather_immunities = list("ash")
 	see_in_dark = 1
-	butcher_results = list(/obj/item/food/meat/slab = list(4,6))
+	butcher_results = list(/obj/item/food/meat/slab/crab = list(4,6))
 	response_help_continuous = "pushes"
 	response_help_simple = "pushes"
 	response_disarm_continuous = "knocks"
