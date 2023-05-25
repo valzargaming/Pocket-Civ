@@ -29,6 +29,54 @@
 	plate_type = /obj/item/stick
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 	mood_event_type = /datum/mood_event/ate_meal
+	
+/obj/item/food/dish/crab_leg_skewer
+	name = "crab leg skewer"
+	desc = "A whole roasted leg of crab."
+	icon_state = "crab_leg_skewer"
+	plate_type = /obj/item/stick
+	food_reagents = list(/datum/reagent/consumable/nutriment=50)
+	mood_event_type = /datum/mood_event/ate_meal
+	
+/obj/item/food/dish/meat_skewer
+	name = "steak skewer"
+	desc = "A steak on its own. tastes of soot. Could do with some plump helmets"
+	icon_state = "meat_skewer"
+	plate_type = /obj/item/stick
+	food_reagents = list(/datum/reagent/consumable/nutriment=100)
+	mood_event_type = /datum/mood_event/ate_meal
+	
+/obj/item/food/dish/meat_slice_skewer
+	name = "meat skewer"
+	desc = "The chef is definately trying to make food stretch... Better than nothing."
+	icon_state = "meatslice1_skewer"
+	plate_type = /obj/item/stick
+	food_reagents = list(/datum/reagent/consumable/nutriment=25)
+	mood_event_type = /datum/mood_event/ate_meal
+	
+/obj/item/food/dish/meat_slice_skewer_2
+	name = "half meat skewer"
+	desc = "The chef is definately trying to make food stretch... At least its filling."
+	icon_state = "meatslice2_skewer"
+	plate_type = /obj/item/stick
+	food_reagents = list(/datum/reagent/consumable/nutriment=50)
+	mood_event_type = /datum/mood_event/ate_meal
+	
+/obj/item/food/dish/meat_slice_skewer_3
+	name = "tripple meat skewer"
+	desc = "The chef is definately trying to make food stretch... I would still rather have a steak. This seems wastefull."
+	icon_state = "meatslice3_skewer"
+	plate_type = /obj/item/stick
+	food_reagents = list(/datum/reagent/consumable/nutriment=100)
+	mood_event_type = /datum/mood_event/ate_meal
+	
+/obj/item/food/dish/meat_slice_skewer_4
+	name = "full meat skewer"
+	desc = "More meat than a whole steak, but its dry and flavorless. Are we out of plump helmets?"
+	icon_state = "meatslice4_skewer"
+	plate_type = /obj/item/stick
+	food_reagents = list(/datum/reagent/consumable/nutriment=125)
+	mood_event_type = /datum/mood_event/ate_meal
 
 /obj/item/food/dish/salad
 	name = "salad"
@@ -69,6 +117,14 @@
 	desc = "Steamed crab cakes. Get em' while they're hot!"
 	icon_state = "crab_cake"
 	plate_type = /obj/item/reagent_containers/glass/plate/regular
+	food_reagents = list(/datum/reagent/consumable/nutriment=250)
+	mood_event_type = /datum/mood_event/ate_meal/decent
+	
+/obj/item/food/dish/crab_claw_skewer
+	name = "crab claw skewer"
+	desc = "A savorey, smokey, and sweet tasting meat. Best eaten on its own."
+	icon_state = "crab_claw_skewer"
+	plate_type = /obj/item/stick
 	food_reagents = list(/datum/reagent/consumable/nutriment=250)
 	mood_event_type = /datum/mood_event/ate_meal/decent
 
