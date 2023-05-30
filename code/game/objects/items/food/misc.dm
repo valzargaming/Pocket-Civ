@@ -48,7 +48,7 @@
 /obj/item/transfer_food/beer_wurst
 	name = "beer wurst in pan"
 	desc = "Almost that."
-	icon_state = "skillet_beer_wurst"
+	icon_state = "beer_wurst"
 	food_inside = /obj/item/food/dish/roasted_beer_wurst
 	required_container = /obj/item/reagent_containers/glass/plate/regular
 	original_container = /obj/item/reagent_containers/glass/pan

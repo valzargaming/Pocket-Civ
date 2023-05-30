@@ -22,6 +22,19 @@
 	name = "troll meat slice"
 	desc = "Meat cutlet, made for a greater dishes."
 	icon_state = "troll_slice"
+	mood_event_type = /datum/mood_event/ate_raw_food/meat
+	mood_gain = -5
+	mood_duration = 5 MINUTES
+	food_reagents = list(/datum/reagent/consumable/nutriment=20)
+	
+/obj/item/food/slice/meat/crab
+	name = "crab meat"
+	desc = "Shredded crab meat"
+	icon_state = "crab_meat"
+	mood_event_type = /datum/mood_event/ate_raw_food/meat
+	mood_gain = -5
+	mood_duration = 5 MINUTES
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
 
 /obj/item/food/slice/dough
 	name = "dough slice"

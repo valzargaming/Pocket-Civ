@@ -21,3 +21,19 @@
 
 /obj/item/food/meat/slab/troll/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/slice/meat/troll, 3, 2 SECONDS)
+
+/obj/item/food/meat/slab/crab_leg
+	name = "crab leg"
+	desc = "A hunk of meat from our cavern dwelling friends. Good whole, or shredded for crab cakes"
+	icon_state = "crab_leg"
+	
+/obj/item/food/meat/slab/crab_leg/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/slice/meat/crab, 3, 2 SECONDS)
+	
+/obj/item/food/meat/slab/crab_claw
+	name = "crab claw"
+	desc = "The meat from a large crabs crushing claw. Prized for its sweetness. Shredding this would be a waste."
+	icon_state = "crab_claw"
+	
+/obj/item/food/meat/slab/crab_claw/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/slice/meat/crab, 6, 2 SECONDS)
