@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 	cooking_text = "Put everything on a flat plate and cook in the oven."
 	
 /datum/cooking_recipe/oven/plate/crab_cake
-	req_items = list(/obj/item/food/slice/plump_helmet=3, /obj/item/food/slice/meat/crab, /obj/item/growable/cave_wheat=1)
+	req_items = list(/obj/item/food/slice/plump_helmet=3, /obj/item/food/slice/meat/crab=1, /obj/item/growable/cave_wheat=1)
 	result = /obj/item/food/dish/crab_cake
 	req_lvl = 3
 	cooking_text = "Put everything on a plate and cook in the oven."
