@@ -15,19 +15,21 @@ $include interviews.txt
 # Which explicitly disables LOG_TWITTER, as well as locking it.
 # There are various options which are hard-locked for security reasons.
 
-## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-SERVERNAME Gay Dream
+HOST ValZarGaming
 
-SERVERTYPE Fuck
+## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
+SERVERNAME Pocket Stronghold 13
+
+SERVERTYPE DWARF_FORTRESS
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
-SERVERSQLNAME shit
+SERVERSQLNAME DWARF_FORTRESS
 
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
-STATIONNAME Testbox
+#STATIONNAME Pocket Stronghold 13
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-#HUB
+HUB
 
 ## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
 LOBBY_COUNTDOWN 200
@@ -38,13 +40,13 @@ ROUND_END_COUNTDOWN 90
 ## Comment this out if you want to use the SQL based admin system, the legacy system uses admins.txt.
 ## You need to set up your database to use the SQL based system.
 ## This flag is automatically enabled if SQL_ENABLED isn't
-ADMIN_LEGACY_SYSTEM
+#ADMIN_LEGACY_SYSTEM
 
 ##Uncomment this to stop any admins loaded by the legacy system from having their rank edited by the permissions panel
-#PROTECT_LEGACY_ADMINS
+PROTECT_LEGACY_ADMINS
 
 ##Uncomment this to stop any ranks loaded by the legacy system from having their flags edited by the permissions panel
-#PROTECT_LEGACY_RANKS
+PROTECT_LEGACY_RANKS
 
 ##Uncomment this to have admin ranks only loaded from the legacy admin_ranks.txt
 ##If enabled, each time admins are loaded ranks the database will be updated with the current ranks and their flags
@@ -64,7 +66,7 @@ USE_AGE_RESTRICTION_FOR_JOBS
 #USE_ACCOUNT_AGE_FOR_JOBS
 
 ## Unhash this to track player playtime in the database. Requires database to be enabled.
-#USE_EXP_TRACKING
+USE_EXP_TRACKING
 ## Unhash this to enable playtime requirements for head jobs.
 #USE_EXP_RESTRICTIONS_HEADS
 ## Unhash this to override head jobs' playtime requirements with this number of hours.
@@ -136,19 +138,19 @@ LOG_WORLD_TOPIC
 # LOG_MECHA
 
 ## log virus and actions
-LOG_VIRUS
+# LOG_VIRUS
 
 ## log cloning actions
-LOG_CLONING
+# LOG_CLONING
 
 ## log shuttle actions
-LOG_SHUTTLE
+# LOG_SHUTTLE
 
 ## Log all timers on timer auto reset
 # LOG_TIMERS_ON_BUCKET_RESET
 
 ##Log camera pictures - Must have picture logging enabled
-PICTURE_LOGGING_CAMERA
+# PICTURE_LOGGING_CAMERA
 
 ## period of time in seconds for players to be considered inactive
 # INACTIVITY_PERIOD 300
@@ -198,13 +200,13 @@ CHECK_RANDOMIZER
 ## IPINTEL:
 ## This allows you to detect likely proxies by checking ips against getipintel.net
 ## Rating to warn at: (0.9 is good, 1 is 100% likely to be a spammer/proxy, 0.8 is 80%, etc) anything equal to or higher then this number triggers an admin warning
-#IPINTEL_RATING_BAD 0.9
+IPINTEL_RATING_BAD 0.9
 ## Contact email, (required to use the service, leaving blank or default disables IPINTEL)
-#IPINTEL_EMAIL ch@nge.me
+IPINTEL_EMAIL valzargaming@gmail.com
 ## How long to save good matches (ipintel rate limits to 15 per minute and 500 per day. so this shouldn't be too low, getipintel.net suggests 6 hours, time is in hours) (Your ip will get banned if you go over 500 a day too many times)
-#IPINTEL_SAVE_GOOD 12
+IPINTEL_SAVE_GOOD 12
 ## How long to save bad matches (these numbers can change as ips change hands, best not to save these for too long in case somebody gets a new ip used by a spammer/proxy before.)
-#IPINTEL_SAVE_BAD 3
+IPINTEL_SAVE_BAD 3
 ## Domain name to query (leave commented out for the default, only needed if you pay getipintel.net for more querys)
 #IPINTEL_DOMAIN check.getipintel.net
 
@@ -224,16 +226,16 @@ CHECK_RANDOMIZER
 #SERVER s1.station13.ru:2019
 
 ## forum address
-FORUMURL https://discord.gg/9uJ7dmM
+FORUMURL https://discord.gg/wP6cdD3trz
 
 ## Wiki address
-WIKIURL https://wiki.station13.ru
+WIKIURL https://ps13.valzargaming.com/wiki/
 
 ## Rules address
-RULESURL https://discord.gg/tSaNvvG
+RULESURL https://discord.gg/wP6cdD3trz
 
 ## Github address
-GITHUBURL https://github.com/daxsc/YTgstation/
+GITHUBURL https://github.com/VZGCoders/Pocket-Stronghold-13
 
 ## Round specific stats address
 ## Link to round specific parsed logs; IE statbus. It is appended with the RoundID automatically by ticker/Reboot()
@@ -248,7 +250,7 @@ GITHUBURL https://github.com/daxsc/YTgstation/
 
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-# BANAPPEALS https://discord.gg/tSaNvvG
+BANAPPEALS https://discord.gg/wP6cdD3trz
 
 ## System command that invokes youtube-dl, used by Play Internet Sound.
 ## You can install youtube-dl with
@@ -301,19 +303,19 @@ NOTE_STALE_DAYS 365.2422
 ##Note: all population caps can be used with each other if desired.
 
 ## Uncomment for 'soft' population caps, players will be warned while joining if the living crew exceeds the listed number.
-SOFT_POPCAP 100
+# SOFT_POPCAP 100
 
 ## Message for soft cap
 SOFT_POPCAP_MESSAGE Be warned that the server is currently serving a high number of users, consider using alternative game servers.
 
 ## Uncomment for 'hard' population caps, players will not be allowed to spawn if the living crew exceeds the listed number, though they may still observe or wait for the living crew to decrease in size.
-HARD_POPCAP 150
+# HARD_POPCAP 150
 
 ## Message for hard cap
 HARD_POPCAP_MESSAGE The server is currently serving a high number of users, You cannot currently join. You may wait for the number of living crew to decline, observe, or find alternative servers.
 
 ## Uncomment for 'extreme' population caps, players will not be allowed to join the server if living crew exceeds the listed number.
-EXTREME_POPCAP 200
+# EXTREME_POPCAP 200
 
 ## Message for extreme cap
 EXTREME_POPCAP_MESSAGE The server is currently serving a high number of users, find alternative servers.
@@ -352,10 +354,10 @@ PANIC_BUNKER_MESSAGE Sorry, but the server is currently not accepting connection
 
 ## If panic bunker is on and a player is rejected (see above), attempt to send them to this connected server (see below) instead.
 ##	You probably want this to be the same as CROSS_SERVER_ADDRESS
-PANIC_SERVER_ADDRESS byond://s1.station13.ru:1986
+PANIC_SERVER_ADDRESS byond://www.civ13.com:1715
 
 ##Name of the place to send people rejected by the bunker
-PANIC_SERVER_NAME [Put the name here]
+PANIC_SERVER_NAME Civ13 Nomads
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
 #AGGRESSIVE_CHANGELOG
@@ -419,7 +421,7 @@ CLIENT_ERROR_BUILD 1421
 ## Set to 0 or comment out to disable.
 SECOND_TOPIC_LIMIT 10
 
-MINUTE_TOPIC_LIMIT 60
+MINUTE_TOPIC_LIMIT 120
 
 
 ## CLICK RATE LIMITING
@@ -430,7 +432,7 @@ MINUTE_TOPIC_LIMIT 60
 ## Set to 0 to disable.
 SECOND_CLICK_LIMIT 10
 
-MINUTE_CLICK_LIMIT 60
+MINUTE_CLICK_LIMIT 0
 
 ##Error handling related options
 ## The "cooldown" time for each occurence of a unique error
@@ -520,16 +522,16 @@ HARD_DELETES_OVERRUN_LIMIT 5
 
 ## The URL to the webhook for adminhelps to relay the urgent ahelp message to
 ## If not set, will disable urgent ahelps.
-#ADMINHELP_WEBHOOK_URL
+ADMINHELP_WEBHOOK_URL https://discord.com/api/webhooks/1048485225589649449/dItCUbQ-kXqf-5s0wM2ado1nanaGgKsW-I-PcpG9gkmffs-5OizRqaR73eVyQqDWxJgs
 
 ## The urgent ahelp cooldown for a given player if they're alone on a server and need to send an urgent ahelp.
 URGENT_AHELP_COOLDOWN 300
 
 ## The message that is sent to the discord if an urgent ahelp is sent. Useful for sending a role ping.
-#URGENT_AHELP_MESSAGE Ban ban ban ban
+URGENT_AHELP_MESSAGE <@&1043390003381817354> An urgent ahelp was sent!
 
 ## The message that the player receives whenever prompted whether they want to send an urgent ahelp or not.
-#URGENT_AHELP_USER_PROMPT This'll ping the admins!
+URGENT_AHELP_USER_PROMPT An administrator will assist you shortly.
 
 ## The URL for the pfp of the webhook
 #ADMINHELP_WEBHOOK_PFP

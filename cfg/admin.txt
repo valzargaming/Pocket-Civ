@@ -1,0 +1,6 @@
+valzargaming role=admin
+odisurin role=admin
+artofwasd role=admin
+kanohashinobi role=admin
+quenya role=admin
+sirobar role=admin
