@@ -93,7 +93,18 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	return new_msg
 
-/mob/living/say(message, bubble_type,list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/say(
+	message,
+	bubble_type,
+	list/spans = list(),
+	sanitize = TRUE,
+	datum/language/language = null,
+	ignore_spam = FALSE,
+	forced,
+	message_range = 7,
+	datum/saymode/saymode,
+	list/message_mods = list(),
+)
 	var/ic_blocked = FALSE
 	if(client && !forced && CHAT_FILTER_CHECK(message))
 		//The filter doesn't act on the sanitized message, but the raw message.
@@ -103,16 +114,15 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(!message || message == "")
 		return
-
 	if(ic_blocked)
 		//The filter warning message shows the sanitized message though.
 		to_chat(src, span_warning("Your message was blocked\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span>."))
 		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return
-	var/list/message_mods = list()
+
 	var/original_message = message
 	message = get_message_mods(message, message_mods)
-	var/datum/saymode/saymode = SSradio.saymodes[message_mods[RADIO_KEY]]
+	saymode = SSradio.saymodes[message_mods[RADIO_KEY]]
 
 	if(!message)
 		return
@@ -171,13 +181,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			to_chat(src, span_warning("You cannot speak!"))
 			return
 
-	var/message_range = 7
-
 	var/succumbed = FALSE
 
 	if(message_mods[WHISPER_MODE] == MODE_WHISPER)
 		message_range = 1
-		log_talk(message, LOG_WHISPER)
+		log_talk(message, LOG_WHISPER, forced_by = forced)
 		if(stat == HARD_CRIT)
 			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
 			// If we cut our message short, abruptly end it with a-..
@@ -188,7 +196,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			message_mods[WHISPER_MODE] = MODE_WHISPER_CRIT
 			succumbed = TRUE
 	else
-		log_talk(message, LOG_SAY, forced_by=forced)
+		log_talk(message, LOG_SAY, forced_by = forced)
 
 	message = treat_message(message) // unfortunately we still need this
 	var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
@@ -217,13 +225,13 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		radio_message = stars(radio_message)
 		spans |= SPAN_ITALICS
 
-	send_speech(message, message_range, src, bubble_type, spans, language, message_mods)
+	send_speech(message, message_range, src, bubble_type, spans, language, message_mods, forced = forced)//roughly 58% of living/say()'s total cost
 
 	if(succumbed)
 		succumb(1)
-		to_chat(src, compose_message(src, language, message, , spans, message_mods))
+		to_chat(src, compose_message(src, language, message, null, spans, message_mods))
 
-	return 1
+	return TRUE
 
 /mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
@@ -271,10 +279,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	show_message(message, MSG_AUDIBLE, deaf_message, deaf_type, avoid_highlighting = speaker == src)
 	return message
 
-/mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, list/message_mods = list())
+/mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans = list(), datum/language/message_language = null, list/message_mods = list(), forced = null)
 	var/eavesdrop_range = 0
-	if(message_mods[WHISPER_MODE]) //If we're whispering
-		eavesdrop_range = EAVESDROP_EXTRA_RANGE
 	var/list/listening = get_hearers_in_view(message_range+eavesdrop_range, source)
 	var/list/the_dead = list()
 	if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
@@ -295,6 +301,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			if(HAS_TRAIT(mute, TRAIT_HANDS_BLOCKED) || HAS_TRAIT(mute, TRAIT_EMOTEMUTE))
 				to_chat(src, "<span class='warning'>You can't sign at the moment!</span.?>")
 				return FALSE
+
 	if(client) //client is so that ghosts don't have to listen to mice
 		for(var/_M in GLOB.player_list)
 			var/mob/M = _M
@@ -315,15 +322,15 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	var/eavesrendered
 	if(eavesdrop_range)
 		eavesdropping = stars(message)
-		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
+		eavesrendered = compose_message(src, message_language, eavesdropping, null, spans, message_mods)
 
-	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
+	var/rendered = compose_message(src, message_language, message, null, spans, message_mods)
 	for(var/_AM in listening)
 		var/atom/movable/AM = _AM
 		if(eavesdrop_range && get_dist(source, AM) > message_range && !(the_dead[AM]))
-			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mods)
+			AM.Hear(eavesrendered, src, message_language, eavesdropping, null, spans, message_mods)
 		else
-			AM.Hear(rendered, src, message_language, message, , spans, message_mods)
+			AM.Hear(rendered, src, message_language, message, null, spans, message_mods)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble
@@ -332,7 +339,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		if(M.client || (SSlag_switch.measures[DISABLE_RUNECHAT] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES)))
 			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
-	INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
 
 /mob/proc/binarycheck()
 	return FALSE
@@ -342,11 +349,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		return TRUE
 
 /mob/living/proc/can_speak_basic(message, ignore_spam = FALSE, forced = FALSE) //Check BEFORE handling of xeno and ling channels
-	if(client)
+	if(client && !(ignore_spam || forced))
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, span_danger("You cannot speak in IC (muted)."))
 			return FALSE
-		if(!(ignore_spam || forced) && client.handle_spam_prevention(message,MUTE_IC))
+		if(client.handle_spam_prevention(message, MUTE_IC))
 			return FALSE
 
 	return TRUE
@@ -410,7 +417,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	else
 		. = ..()
 
-/mob/living/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced)
 	if(!message)
 		return
 	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)

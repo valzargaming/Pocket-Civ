@@ -22,25 +22,38 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_YOHEI]" = "yoheiradio"
 	))
 
-/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	if(!can_speak())
+/atom/movable/proc/say(
+	message,
+	bubble_type,
+	list/spans = list(),
+	sanitize = TRUE,
+	datum/language/language,
+	ignore_spam = FALSE,
+	forced = null,
+	message_range = 7,
+	datum/saymode/saymode,
+	list/message_mods = list()
+)
+	if(!can_speak(message))
 		return
+	if(sanitize)
+		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(message == "" || !message)
 		return
 	spans |= speech_span
 	if(!language)
 		language = get_selected_language()
-
-	send_speech(message, 7, src, , spans, message_language=language)
+	send_speech(message, message_range, src, bubble_type, spans, language, message_mods, forced = forced)
 
 /atom/movable/proc/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
+	return TRUE
 
 /atom/movable/proc/can_speak()
 	return 1
 
-/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list())
-	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
+/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language, list/message_mods = list(), forced = FALSE)
+	var/rendered = compose_message(src, message_language, message, null, spans, message_mods)
 	var/list/hearers_in_view = get_hearers_in_view(range, source)
 	for(var/_AM in hearers_in_view)
 		if(ismob(_AM))
@@ -48,7 +61,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			if(M.client)
 				hearers_in_view.Add(M.client)
 		var/atom/movable/AM = _AM
-		AM.Hear(rendered, src, message_language, message, , spans, message_mods)
+		AM.Hear(rendered, src, message_language, message, null, spans, message_mods)
 
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(message)]",MOB_LAYER+1), hearers_in_view, 30)
 

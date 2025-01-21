@@ -1,0 +1,3 @@
+valzargaming role=admin
+artofwasd role=admin
+quenya role=admin
