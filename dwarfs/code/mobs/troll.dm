@@ -72,7 +72,7 @@
 
 /obj/effect/temp_visual/rockfall/Initialize(mapload)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/fall)
+	INVOKE_ASYNC(src, PROC_REF(fall))
 
 /obj/effect/temp_visual/rockfall/proc/fall()
 	var/turf/T = get_turf(src)
