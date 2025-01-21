@@ -2,7 +2,7 @@
 GLOBAL_LIST_EMPTY(cats)
 #define MAX_CATS 300
 #define MAX_CLOSE_CATS 15
-#define CLOSE_CATS_RANGE 15
+#define CLOSE_CATS_RANGE 25
 
 /mob/living/simple_animal/pet/cat
 	name = "cat"
@@ -147,7 +147,8 @@ GLOBAL_LIST_EMPTY(cats)
 				playsound(src, pick(meowlist), 40, TRUE)
 	..()
 
-	make_babies()
+	if(DT_PROB(0.02, delta_time)) // Roughly 10% chance to breed
+		make_babies()
 
 	if(!stat && !resting && !buckled)
 		turns_since_scan++
