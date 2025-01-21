@@ -114,15 +114,23 @@
 			. |= BP.on_life(delta_time, times_fired, stam_regen)
 
 /mob/living/carbon/proc/handle_organs(delta_time, times_fired)
-	if(stat != DEAD)
-		for(var/organ_slot in GLOB.organ_process_order)
-			var/obj/item/organ/organ = getorganslot(organ_slot)
-			if(organ?.owner) // This exist mostly because reagent metabolization can cause organ reshuffling
-				organ.on_life(delta_time, times_fired)
-	else
+	if(stat == DEAD)
 		for(var/V in internal_organs)
 			var/obj/item/organ/O = V
-			O.on_death(delta_time, times_fired) //Needed so organs decay while inside the body.
+			// On-death is where organ decay is handled
+			O.on_death(delta_time, times_fired)
+			// We need to re-check the stat every organ, as one of our others may have revived us
+			if(stat != DEAD)
+				break
+		return
+
+	// NOTE: internal_organs_slot is sorted by GLOB.organ_process_order on insertion
+	for(var/V in internal_organs)
+		// We don't use getorganslot here because we know we have the organ we want, since we're iterating the list containing em already
+		// This code is hot enough that it's just not worth the time
+		var/obj/item/organ/O = V
+		if(O?.owner) // This exist mostly because reagent metabolization can cause organ reshuffling
+			O.on_life(delta_time, times_fired)
 
 /*
 Alcohol Poisoning Chart

@@ -105,7 +105,7 @@
 
 /obj/item/organ/proc/on_life(delta_time, times_fired)	//repair organ damage if the organ is not failing
 	if(organ_flags & ORGAN_FAILING)
-		handle_failing_organs()
+		handle_failing_organs(delta_time)
 		return
 
 	if(failure_time > 0)
@@ -114,6 +114,10 @@
 	if(organ_flags & ORGAN_SYNTHETIC_EMP) //Synthetic organ has been emped, is now failing.
 		applyOrganDamage(decay_factor * maxHealth * delta_time)
 		return
+
+	if(!damage) // No sense healing if you're not even hurt bro
+		return
+
 	///Damage decrements by a percent of its maxhealth
 	var/healing_amount = healing_factor
 	///Damage decrements again by a percent of its maxhealth, up to a total of 4 extra times depending on the owner's health
@@ -154,16 +158,26 @@
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.
 
-///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
-/obj/item/organ/proc/applyOrganDamage(d, maximum = maxHealth)	//use for damaging effects
+///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage. Returns the net change in organ damage.
+/obj/item/organ/proc/applyOrganDamage(d, maximum = maxHealth, required_organ_flag = NONE) //use for damaging effects
 	if(!d) //Micro-optimization.
-		return
+		return FALSE
+	maximum = clamp(maximum, 0, maxHealth) // the logical max is, our max
 	if(maximum < damage)
-		return
+		return FALSE
+	if(required_organ_flag && !(organ_flags & required_organ_flag))
+		return FALSE
 	damage = clamp(damage + d, 0, maximum)
+	. = (prev_damage - damage) // return net damage
 	var/mess = check_damage_thresholds(owner)
 	prev_damage = damage
-	if(mess && owner)
+
+	if(damage >= maxHealth)
+		organ_flags |= ORGAN_FAILING
+	else
+		organ_flags &= ~ORGAN_FAILING
+
+	if(mess && owner && owner.stat <= SOFT_CRIT)
 		to_chat(owner, mess)
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
@@ -176,20 +190,18 @@
  * description: By checking our current damage against our previous damage, we can decide whether we've passed an organ threshold.
  *				 If we have, send the corresponding threshold message to the owner, if such a message exists.
  */
-/obj/item/organ/proc/check_damage_thresholds(M)
+/obj/item/organ/proc/check_damage_thresholds(mob/organ_owner)
 	if(damage == prev_damage)
 		return
 	var/delta = damage - prev_damage
 	if(delta > 0)
 		if(damage >= maxHealth)
-			organ_flags |= ORGAN_FAILING
 			return now_failing
 		if(damage > high_threshold && prev_damage <= high_threshold)
 			return high_threshold_passed
 		if(damage > low_threshold && prev_damage <= low_threshold)
 			return low_threshold_passed
 	else
-		organ_flags &= ~ORGAN_FAILING
 		if(prev_damage > low_threshold && damage <= low_threshold)
 			return low_threshold_cleared
 		if(prev_damage > high_threshold && damage <= high_threshold)
