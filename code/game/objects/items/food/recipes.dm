@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 	result = /obj/item/food/dish/troll_delight
 	req_lvl = 7
 	cooking_text = "Put everything on a flat plate and cook in the oven."
-	
+
 /datum/cooking_recipe/oven/plate/crab_cake
 	req_items = list(/obj/item/food/slice/plump_helmet=3, /obj/item/food/slice/meat/crab=1, /obj/item/growable/cave_wheat=1)
 	result = /obj/item/food/dish/crab_cake
@@ -62,6 +62,12 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 ///******************PLATE RECIPES******************///
 /datum/cooking_recipe/plate
 
+/datum/cooking_recipe/plate/dwarven_salad
+	req_items = list(/obj/item/growable/carrot=1, /obj/item/growable/plump_helmet=1, /obj/item/growable/turnip=1)
+	result = /obj/item/food/dish/salad
+	req_lvl = 2
+	cooking_text = "Throw everything into a bowl and mix with a kitchen knife."
+
 ///******************STICK RECIPES******************///
 /datum/cooking_recipe/stick
 
@@ -76,37 +82,37 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 	result = /obj/item/food/dish/crab_claw_skewer
 	req_lvl = 1
 	cooking_text = "Insert all of it onto a stick and apply some fire."
-	
+
 /datum/cooking_recipe/stick/crab_leg_skewer
 	req_items = list(/obj/item/food/meat/slab/crab_leg=1)
 	result = /obj/item/food/dish/crab_leg_skewer
 	req_lvl = 1
 	cooking_text = "Insert all of it onto a stick and apply some fire."
-	
+
 /datum/cooking_recipe/stick/meat_skewer
 	req_items = list(/obj/item/food/meat/slab=1)
 	result = /obj/item/food/dish/meat_skewer
 	req_lvl = 1
 	cooking_text = "Insert all of it onto a stick and apply some fire."
-	
+
 /datum/cooking_recipe/stick/meat_slice_skewer
 	req_items = list(/obj/item/food/slice/meat=1)
 	result = /obj/item/food/dish/meat_slice_skewer
 	req_lvl = 1
 	cooking_text = "Insert all of it onto a stick and apply some fire."
-	
+
 /datum/cooking_recipe/stick/meat_slice_skewer_2
 	req_items = list(/obj/item/food/slice/meat=2)
 	result = /obj/item/food/dish/meat_slice_skewer_2
 	req_lvl = 1
 	cooking_text = "Insert all of it onto a stick and apply some fire."
-	
+
 /datum/cooking_recipe/stick/meat_slice_skewer_3
 	req_items = list(/obj/item/food/slice/meat=3)
 	result = /obj/item/food/dish/meat_slice_skewer_3
 	req_lvl = 1
 	cooking_text = "Insert all of it onto a stick and apply some fire."
-	
+
 /datum/cooking_recipe/stick/meat_slice_skewer_4
 	req_items = list(/obj/item/food/slice/meat=4)
 	result = /obj/item/food/dish/meat_slice_skewer_4
@@ -115,6 +121,8 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 ///******************BOWL RECIPES******************///
 /datum/cooking_recipe/bowl
 
+// This recipe datum doesn't seem to be used anywhere
+// For now, we've duplicated it under plates so it's accessible
 /datum/cooking_recipe/bowl/dwarven_salad
 	req_items = list(/obj/item/growable/carrot=1, /obj/item/growable/plump_helmet=1, /obj/item/growable/turnip=1)
 	result = /obj/item/food/dish/salad
