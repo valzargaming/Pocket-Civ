@@ -115,7 +115,7 @@
 /obj/item/food/dish/crab_cake
 	name = "crab cakes"
 	desc = "Steamed crab cakes. Get em' while they're hot!"
-	icon_state = "crab_cake"
+	icon_state = "crab_cakes"
 	plate_type = /obj/item/reagent_containers/glass/plate/regular
 	food_reagents = list(/datum/reagent/consumable/nutriment=250)
 	mood_event_type = /datum/mood_event/ate_meal/decent
