@@ -138,10 +138,10 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment=300)
 	mood_event_type = /datum/mood_event/ate_meal/luxurious
 
-/obj/item/food/dish/troll_delight
+/obj/item/food/dish/trolls_delight
 	name = "troll's delight"
 	desc = "A decadent dish, fit for a king's feast."
-	icon_state = "troll_delight"
+	icon_state = "trolls_delight"
 	plate_type = /obj/item/reagent_containers/glass/plate/flat
 	food_reagents = list(/datum/reagent/consumable/nutriment=300)
 	mood_event_type = /datum/mood_event/ate_meal/luxurious
