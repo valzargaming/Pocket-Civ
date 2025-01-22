@@ -377,6 +377,8 @@ Behavior that's still missing from this component that original food items had t
 	SEND_SIGNAL(parent, COMSIG_FOOD_CONSUMED, eater, feeder)
 
 	on_consume?.Invoke(eater, feeder)
+	if (QDELETED(parent)) // might be destroyed by the callback
+		return
 
 	to_chat(feeder, span_warning("There is nothing left of [parent], oh no!"))
 	// if needed in future uncomment and add mood event 'eaten wothout table'
@@ -385,7 +387,7 @@ Behavior that's still missing from this component that original food items had t
 	// 	if(M)
 	if(isturf(parent))
 		var/turf/T = parent
-		T.ScrapeAway()
+		T.ScrapeAway(1, CHANGETURF_INHERIT_AIR)
 	else
 		qdel(parent)
 
