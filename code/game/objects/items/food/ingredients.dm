@@ -26,7 +26,7 @@
 	mood_gain = -5
 	mood_duration = 5 MINUTES
 	food_reagents = list(/datum/reagent/consumable/nutriment=20)
-	
+
 /obj/item/food/slice/meat/crab
 	name = "crab meat"
 	desc = "Shredded crab meat"
@@ -115,7 +115,9 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment=30)
 
 /obj/item/food/sausage/luxurious
+	desc = "luxurious sausage"
 	food_reagents = list(/datum/reagent/consumable/nutriment=50)
 
 /obj/item/food/sausage/failed // bad sausage; gives poop when cooked
+	desc = "botched sausage"
 	food_reagents = list(/datum/reagent/consumable/nutriment=10)
