@@ -44,6 +44,7 @@
 		else
 			T.forceMove(loc)
 			qdel(src)
+		to_chat(user, span_notice("You add [I] to [src] to make a torch."))
 		qdel(I)
 	else if(I.get_temperature())
 		var/datum/cooking_recipe/R = find_recipe(subtypesof(/datum/cooking_recipe/stick), contents)
