@@ -16,7 +16,7 @@
 	if(I.tool_behaviour == TOOL_CHISEL)
 		if(I.use_tool(src, user, 1 SECONDS, volume=50))
 			if(prob(25))
-				to_chat(user, span_warning("You process \the [src]."))
+				to_chat(user, span_warning("You failed to process \the [src]."))
 				return
 			new /obj/item/stack/sheet/stone(user.loc)
 			user.mind.adjust_experience(/datum/skill/mining, 1)
