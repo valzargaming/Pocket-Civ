@@ -425,7 +425,7 @@
 /mob/living/simple_animal/proc/make_babies() // <3 <3 <3
 	if(gender != FEMALE || stat || next_scan_time > world.time || !childtype || !animal_species || !SSticker.IsRoundInProgress())
 		return
-	next_scan_time = world.time + 400
+	next_scan_time = world.time + 1000
 	var/alone = TRUE
 	var/mob/living/simple_animal/partner
 	var/children = 0
@@ -434,18 +434,17 @@
 		if(M.stat != CONSCIOUS) //Check if it's conscious FIRST.
 			continue
 		var/is_child = is_type_in_list(M, childtype)
-		var/is_same_species = istype(M, animal_species)
 		if(is_child) //Check for children SECOND.
 			children++
-		else if(is_same_species)
+		else if(istype(M, animal_species))
 			friends++
 			if(M.ckey)
 				continue
 			else if(!is_child && M.gender == MALE && !(M.flags_1 & HOLOGRAM_1)) //Better safe than sorry ;_;
 				partner = M
-
 		else if(isliving(M) && !faction_check_mob(M)) //shyness check. we're not shy in front of things that share a faction with us.
 			return //we never mate when not alone, so just abort early
+
 	if(alone && partner && (children < 3) && (friends < 8))
 		var/childspawn = pickweight(childtype)
 		var/turf/target = get_turf(loc)

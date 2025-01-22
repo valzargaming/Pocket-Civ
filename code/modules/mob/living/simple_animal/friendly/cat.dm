@@ -147,8 +147,7 @@ GLOBAL_LIST_EMPTY(cats)
 				playsound(src, pick(meowlist), 40, TRUE)
 	..()
 
-	if(DT_PROB(0.02, delta_time)) // Roughly 10% chance to breed
-		make_babies()
+	make_babies()
 
 	if(!stat && !resting && !buckled)
 		turns_since_scan++
