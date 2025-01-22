@@ -61,13 +61,9 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 
 ///******************PLATE RECIPES******************///
 /datum/cooking_recipe/plate
+/*
 
-/datum/cooking_recipe/plate/dwarven_salad
-	req_items = list(/obj/item/growable/carrot=1, /obj/item/growable/plump_helmet=1, /obj/item/growable/turnip=1)
-	result = /obj/item/food/dish/salad
-	req_lvl = 2
-	cooking_text = "Throw everything into a bowl and mix with a kitchen knife."
-
+*/
 ///******************STICK RECIPES******************///
 /datum/cooking_recipe/stick
 
@@ -121,14 +117,11 @@ GLOBAL_LIST_EMPTY(cooking_recipes)
 ///******************BOWL RECIPES******************///
 /datum/cooking_recipe/bowl
 
-// This recipe datum doesn't seem to be used anywhere
-// For now, we've duplicated it under plates so it's accessible
 /datum/cooking_recipe/bowl/dwarven_salad
 	req_items = list(/obj/item/growable/carrot=1, /obj/item/growable/plump_helmet=1, /obj/item/growable/turnip=1)
 	result = /obj/item/food/dish/salad
 	req_lvl = 2
 	cooking_text = "Throw everything into a bowl and mix with a kitchen knife."
-
 ///******************PAN RECIPES******************///
 /datum/cooking_recipe/pan
 
