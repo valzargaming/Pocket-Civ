@@ -251,6 +251,7 @@
 	if(!fuel && (istype(I, /obj/item/growable/cave_wheat) || istype(I, /obj/item/growable/barley)))
 		fuel = rand(8000, 9000)
 		to_chat(user, span_notice("You add [I] to [src] making it usable once again."))
+		qdel(I)
 		icon_state = "torch"
 	else
 		. = ..()
