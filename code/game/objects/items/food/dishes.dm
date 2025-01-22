@@ -104,7 +104,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment=250)
 	mood_event_type = /datum/mood_event/ate_meal/decent
 
-/obj/item/food/dish/roasted_beer_wurst
+/obj/item/food/dish/beer_wurst
 	name = "roasted beer wurst"
 	desc = "Ich liebe dich."
 	icon_state = "beer_wurst"
