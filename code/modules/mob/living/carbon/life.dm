@@ -95,7 +95,7 @@
 	if((NOBLOOD in dna.species.species_traits) || HAS_TRAIT(src, TRAIT_NOBLEED) || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		hydration = HYDRATION_LEVEL_START_MIN
 		return
-	hydration = max(hydration-HYDRATION_LOSS_PER_SECOND*delta_time, 0)
+	hydration = clamp(hydration - HYDRATION_LOSS_PER_SECOND*delta_time, 0, HYDRATION_LEVEL_MAX)
 
 // /mob/living/carbon/human/handle_hydration(delta_time, times_fired)
 // 	if(IsSleeping())

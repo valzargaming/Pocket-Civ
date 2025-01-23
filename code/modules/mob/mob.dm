@@ -80,8 +80,8 @@
 			continue
 		var/datum/atom_hud/alternate_appearance/AA = v
 		AA.onNewMob(src)
-	set_nutrition(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
-	hydration = rand(HYDRATION_LEVEL_START_MIN, HYDRATION_LEVEL_START_MAX)
+	set_nutrition(NUTRITION_LEVEL_START_MAX)
+	hydration = HYDRATION_LEVEL_START_MAX
 	. = ..()
 	update_config_movespeed()
 	initialize_actionspeed()
