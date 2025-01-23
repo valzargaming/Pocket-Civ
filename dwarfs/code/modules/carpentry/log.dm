@@ -77,5 +77,11 @@
 
 /obj/item/log/large/towercap
 	name = "large towercap log"
-	icon_state = "large_towercap"
+	icon_state = "large_towercap_log"
 	small_log_type = /obj/item/log/towercap
+
+/obj/item/log
+	name = "log"
+
+/obj/item/log/large
+	name = "large log"

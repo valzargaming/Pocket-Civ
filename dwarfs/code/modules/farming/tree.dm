@@ -6,11 +6,11 @@
 	lifespan = INFINITY
 	layer = ABOVE_MOB_LAYER
 	var/small_log_type = /obj/item/log
-	var/large_log_type = /obj/item/log
+	var/large_log_type = /obj/item/log/large
 	var/list/small_log_amount = list(0,1,1,2,0,2,0) //a list of small logs with amount corresponding to the growthstage
 	var/list/large_log_amount = list(0,0,0,0,1,1,2) //a list of large logs with amount corresponding to the growthstage
 	var/cutting_time = 4 SECONDS //time between each chop
-	var/cutting_steps = 9 //how many times you have to chop the tree, 1 less because on the last chop you actuely cut it down
+	var/cutting_steps = 6 // How many times you have to chop the tree, 1 less because on the last chop you actually cut it down
 	var/current_step = 0
 
 /obj/structure/plant/tree/Initialize()
@@ -64,16 +64,21 @@
 	growthdelta = 80 SECONDS
 	produce_delta = 120 SECONDS
 
-/*
+
 /obj/structure/plant/tree/apple
 	name = "apple tree"
-	desc = ""
+	desc = "A sturdy tree that produces delicious apples. Its wood is highly valued by dwarves for crafting."
 	species = "apple"
 	produced = list(/obj/item/growable/apple=4)
-	// growthdelta = 1 MINUTES
-	// produce_delta = 1 MINUTES
-	// max_harvestables =
+	seed_type = /obj/item/growable/seeds/tree/apple
+	health = 100
+	icon_ripe = "apple-3"
+	growthstages = 3
+	growthdelta = 1 MINUTES
+	produce_delta = 1 MINUTES
+	//max_harvestables =
 
+/*
 /obj/structure/plant/tree/alder
 	name = "alder tree"
 	desc = ""

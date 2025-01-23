@@ -15,6 +15,7 @@
 	var/mood_event_type = /datum/mood_event/ate_raw_food
 	var/mood_gain = -2
 	var/mood_duration = 2 MINUTES
+	var/fuel_value = 1
 
 /obj/item/growable/proc/MakePressable()
 	return
@@ -71,15 +72,60 @@
 
 /obj/item/growable/apple
 	name = "apple"
-	desc = "Red?"
+	desc = "A crisp, juicy fruit favored by dwarves for its refreshing taste and versatility in cooking."
 	icon_state = "apple"
 	edible = TRUE
 	bite_consumption = 100
 	foodtypes = FRUIT
-	max_volume = 100
 	bite_consumption = 1
-	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("apple" = 1)
+
+/obj/item/growable/apple/core
+	name = "apple core"
+	desc = "The remnants of an apple, with most of the flesh eaten away. Dwarves often discard or burn these after enjoying the fruit."
+	icon_state = "apple-core"
+	edible = FALSE
+
+/obj/item/growable/apple/core/get_fuel()
+	return fuel_value
+
+/obj/item/growable/apple/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/kitchen/knife))
+		to_chat(user, span_notice("You start slicing [src]..."))
+		if(do_after(user, 2 SECONDS))
+			var/mob/living/carbon/human/H = user
+			var/obj/item/growable/apple/core/T = new()
+			//var/held_index = H.is_holding(src)
+			//if(held_index)
+				//H.put_in_hand(S, held_index)
+			//else
+				//S.forceMove(loc)
+			T.forceMove(loc)
+			//var/obj/item/apple/slices/S = new()
+			var/obj/item/growable/seeds/tree/apple/A = new()
+			var/held_index = H.is_holding(src)
+			if(held_index)
+				H.put_in_hand(A, held_index)
+			else
+				A.forceMove(loc)
+			to_chat(user, span_notice("You sliced [src] and discarded the core."))
+			qdel(src)
+
+/obj/item/growable/apple/core/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/kitchen/knife))
+		to_chat(user, span_notice("You start slicing the seeds out of [src]..."))
+		if(do_after(user, 2 SECONDS))
+			var/mob/living/carbon/human/H = user
+			var/obj/item/growable/seeds/tree/apple/A = new()
+			var/held_index = H.is_holding(src)
+			if(held_index)
+				H.put_in_hand(A, held_index)
+			else
+				A.forceMove(loc)
+			to_chat(user, span_notice("You harvested the seeds from [src]."))
+			qdel(src)
+
+///obj/item/growable/apple/
 
 /obj/item/growable/cave_wheat
 	name = "cave wheat"

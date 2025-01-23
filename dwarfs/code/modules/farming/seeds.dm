@@ -5,7 +5,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	var/obj/structure/plant/plant
-	var/fuel_value = 1
 
 /obj/item/growable/seeds/get_fuel()
 	return fuel_value
@@ -44,3 +43,6 @@
 
 /obj/item/growable/seeds/tree/towercap
 	plant = /obj/structure/plant/tree/towercap
+
+/obj/item/growable/seeds/tree/apple
+	plant = /obj/structure/plant/tree/apple
