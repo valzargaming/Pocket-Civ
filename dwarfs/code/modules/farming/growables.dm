@@ -75,10 +75,17 @@
 	desc = "A crisp, juicy fruit favored by dwarves for its refreshing taste and versatility in cooking."
 	icon_state = "apple"
 	edible = TRUE
-	bite_consumption = 100
 	foodtypes = FRUIT
-	bite_consumption = 1
+	eat_time = 2
 	tastes = list("apple" = 1)
+	//bite_consumption = 1
+	mood_gain = -1
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
+
+/obj/item/growable/apple/proc/On_Consume(var/mob/M)
+	var/obj/item/growable/seeds/tree/apple/A = new()
+	A.forceMove(loc)
+	. = ..()
 
 /obj/item/growable/apple/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/kitchen/knife))
