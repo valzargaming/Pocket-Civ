@@ -74,8 +74,8 @@
 	health = 100
 	icon_ripe = "apple-3"
 	growthstages = 3
-	growthdelta = 1 MINUTES
-	produce_delta = 1 MINUTES
+	growthdelta = 90 SECONDS
+	produce_delta = 5 MINUTES
 	//max_harvestables =
 
 /*
