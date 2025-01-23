@@ -16,3 +16,7 @@
 	area_flags = UNIQUE_AREA
 	ambientsounds = AWAY_MISSION
 	sound_environment = SOUND_ENVIRONMENT_CAVE
+
+/area/dwarf/fortress/surface
+	static_lighting = FALSE
+	base_lighting_alpha = 255

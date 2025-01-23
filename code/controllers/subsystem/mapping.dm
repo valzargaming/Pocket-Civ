@@ -65,6 +65,7 @@ SUBSYSTEM_DEF(mapping)
 	repopulate_sorted_areas()
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
+	to_chat(world, "Running map generation")
 	run_map_generation()
 
 	// Add the transit level
