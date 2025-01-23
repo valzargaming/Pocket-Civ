@@ -16,6 +16,10 @@
 	var/mood_gain = -2
 	var/mood_duration = 2 MINUTES
 	var/fuel_value = 1
+	var/extract_tool = /obj/item/kitchen/knife
+	var/extract_time = 1 SECONDS
+	var/seed = FALSE // /obj/item/growable/seeds/tree/apple
+	var/byproduct = FALSE // /obj/item/growable/apple/core
 
 /obj/item/growable/proc/MakePressable()
 	return
@@ -27,6 +31,8 @@
 	return
 
 /obj/item/growable/proc/on_consume(mob/living/eater, mob/living/feeder)
+	if (byproduct)
+		new byproduct(get_turf(eater))
 	var/datum/component/mood/M = eater.GetComponent(/datum/component/mood)
 	if(!M)
 		return
@@ -81,46 +87,31 @@
 	//bite_consumption = 1
 	mood_gain = -1
 	food_reagents = list(/datum/reagent/consumable/nutriment=5)
-
-/obj/item/growable/apple/proc/On_Consume(var/mob/M)
-	var/obj/item/growable/seeds/tree/apple/A = new()
-	A.forceMove(loc)
-	. = ..()
-
-/obj/item/growable/apple/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/kitchen/knife))
-		to_chat(user, span_notice("You start slicing [src]..."))
-		if(do_after(user, 2 SECONDS))
-			to_chat(user, span_notice("You sliced [src] and discarded the core."))
-			/* Placeholder harvesting code for apple slices
-			var/mob/living/carbon/human/H = user
-			var/obj/item/apple/slices/S = new() // Pending new icon
-			var/held_index = H.is_holding(src)
-			if(held_index)
-				H.put_in_hand(S, held_index)
-			else
-				S.forceMove(loc)
-			*/
-			var/obj/item/growable/seeds/tree/apple/A = new()
-			A.forceMove(loc)
-			var/obj/item/growable/apple/core/T = new()
-			T.forceMove(loc)
-			qdel(src)
+	extract_time = 5 SECONDS
+	byproduct = /obj/item/growable/apple/core
 
 /obj/item/growable/apple/core
 	name = "apple core"
 	desc = "The remnants of an apple, with most of the flesh eaten away. Dwarves often discard or burn these after enjoying the fruit."
 	icon_state = "apple-core"
 	edible = FALSE
+	extract_time = 3 SECONDS
+	seed = /obj/item/growable/seeds/tree/apple
+	byproduct = FALSE
 
-/obj/item/growable/apple/core/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/kitchen/knife))
-		to_chat(user, span_notice("You start slicing the seeds out of [src]..."))
-		if(do_after(user, 2 SECONDS))
-			to_chat(user, span_notice("You harvest the seeds from [src]."))
-			var/obj/item/growable/seeds/tree/apple/A = new()
-			A.forceMove(loc)
-			qdel(src)
+/obj/item/growable/attackby(obj/item/O, mob/user, params)
+	if(!extract_tool)
+		return ..()
+	if(istype(O, extract_tool))
+		if(seed)
+			to_chat(user, span_notice("You start carefully extracting the seeds from [src]..."))
+			if(do_after(user, extract_time))
+				var/H = new seed(get_turf(user))
+				to_chat(user, span_notice("You extract [H] from [src]."))
+				if (byproduct)
+					var/B = new byproduct(get_turf(user))
+					to_chat(user, span_notice("You discard the leftover [B]."))
+				qdel(src)
 
 /obj/item/growable/apple/core/get_fuel()
 	return fuel_value
