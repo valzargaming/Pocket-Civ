@@ -137,6 +137,14 @@
 	else
 	 . = ..()
 
+/turf/open/floor/dirt/grass
+	name = "grass"
+	desc = "It's greener on the other side."
+	icon_state = "grass"
+
+/turf/open/floor/dirt/grass/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 /turf/open/floor/tilled
 	name = "tilled dirt"
 	desc = "Ready for plants."
