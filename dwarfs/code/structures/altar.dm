@@ -16,7 +16,7 @@
 									/obj/item/stack/sheet/mineral/gem/sapphire=30)
 	var/list/spawnable_seeds = list(/obj/item/growable/seeds/carrot, /obj/item/growable/seeds/cave_wheat, /obj/item/growable/seeds/turnip,
 			 					   /obj/item/growable/seeds/pig_tail, /obj/item/growable/seeds/plump_helmet, /obj/item/growable/seeds/sweet_pod,
-			  					   /obj/item/growable/seeds/barley, /obj/item/growable/seeds/cotton)
+			  					   /obj/item/growable/seeds/grape, /obj/item/growable/seeds/barley, /obj/item/growable/seeds/cotton)
 
 /obj/structure/dwarf_altar/Initialize()
 	. = ..()

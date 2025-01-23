@@ -17,3 +17,11 @@
 /datum/reagent/consumable/juice/sweet_pod/New()
 	. = ..()
 	AddComponent(/datum/component/fermentable, ferment_into=/datum/reagent/consumable/ethanol/wine/rum)
+
+/datum/reagent/consumable/juice/grape
+	name = "grape juice"
+	color = "#800080"
+
+/datum/reagent/consumable/juice/grape/New()
+	. = ..()
+	AddComponent(/datum/component/fermentable, ferment_into=/datum/reagent/consumable/ethanol/wine/grape)

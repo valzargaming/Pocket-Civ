@@ -23,16 +23,20 @@
 	lifespan = 9
 	produced = list(/obj/item/growable/sweet_pod=5)
 	seed_type = /obj/item/growable/seeds/sweet_pod
-/*
+
 /obj/structure/plant/garden/perennial/grape
 	name = "grape"
 	desc = "A \"proper\" source of wine."
 	species = "grape"
-	produced = list()
-	// growthdelta = 1 MINUTES
-	// produce_delta = 1 MINUTES
-	// max_harvestables =
-
+	health = 60
+	maxhealth = 60
+	growthstages = 6
+	produce_delta = 90 SECONDS
+	growthdelta = 60 SECONDS
+	lifespan = 9
+	produced = list(/obj/item/growable/grape=5)
+	seed_type = /obj/item/growable/seeds/grape
+/*
 /obj/structure/plant/garden/perennial/cranberry
 	name = "cranberry"
 	desc = "Low, creeping shrubs or vines. They have slender, wiry stems that are not thickly woody and have small evergreen leaves."

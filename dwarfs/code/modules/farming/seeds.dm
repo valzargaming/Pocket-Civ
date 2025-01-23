@@ -24,6 +24,9 @@
 /obj/item/growable/seeds/sweet_pod
 	plant = /obj/structure/plant/garden/perennial/sweet_pod
 
+/obj/item/growable/seeds/grape
+	plant = /obj/structure/plant/garden/perennial/grape
+
 /obj/item/growable/seeds/barley
 	plant = /obj/structure/plant/garden/crop/barley
 

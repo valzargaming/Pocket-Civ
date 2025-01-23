@@ -140,6 +140,17 @@
 /obj/item/growable/sweet_pod/MakePressable()
 	AddComponent(/datum/component/pressable, /datum/reagent/consumable/juice/sweet_pod, 10)
 
+/obj/item/growable/grape
+	name = "grape"
+	desc = "Small, juicy fruits that can be eaten raw or used to make wine."
+	icon_state = "grape"
+	edible = TRUE
+	mood_gain = -1
+	food_reagents = list(/datum/reagent/consumable/nutriment=5)
+
+/obj/item/growable/grape/MakePressable()
+	AddComponent(/datum/component/pressable, /datum/reagent/consumable/juice/grape, 10)
+
 /obj/item/growable/pig_tail
 	name = "pig tail"
 	desc = "Despite of its name, it's fully vegan. Maybe except the worms."

@@ -382,6 +382,15 @@
 	// produce_delta = 1 MINUTES
 	// max_harvestables =
 
+/obj/structure/plant/garden/grape
+	name = "grape"
+	desc = ""
+	species = "grape"
+	produced = list()
+	// growthdelta = 1 MINUTES
+	// produce_delta = 1 MINUTES
+	// max_harvestables =
+
 /obj/structure/plant/garden/quarry_bush
 	name = "quarry bush"
 	desc = ""

@@ -210,6 +210,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 /datum/controller/subsystem/mapping/proc/run_map_generation()
 	for(var/area/A in world)
+		to_chat(world, "Running generation...")
 		A.RunGeneration()
 
 /datum/controller/subsystem/mapping/proc/run_map_generation_in_z(desired_z_level)

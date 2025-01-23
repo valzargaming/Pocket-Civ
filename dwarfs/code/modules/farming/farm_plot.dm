@@ -2,7 +2,7 @@
 	name = "muddy plot"
 	icon_state = "plantbox"
 	desc = "A pile of mud collected together to grow cave plants in."
-	allowed_species = list("cave_wheat", "pig_tail", "plump_helmet", "sweet_pod")
+	allowed_species = list("cave_wheat", "pig_tail", "plump_helmet", "sweet_pod", "grape")
 
 /obj/structure/farm_plot/soil
 	name = "soil plot"
