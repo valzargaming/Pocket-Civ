@@ -158,8 +158,9 @@
 			return HandleUserlessProcCall(usr, object, delegate, calling_arguments)
 		return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
-		log_runtime("Calling proc: [delegate] on [object] with args: [calling_arguments]")
+		log_runtime("Calling proc: [delegate] on [object] with args: [calling_arguments]") // Troubleshoot by using log_world instead
 		return call(delegate)(arglist(calling_arguments))
+	log_runtime("Calling proc: [delegate] on [object] with args: [calling_arguments]") // Troubleshoot by using log_world instead
 	return call(object, delegate)(arglist(calling_arguments))
 
 /**

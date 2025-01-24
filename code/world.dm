@@ -59,8 +59,43 @@ MMMMMMMMMMMNNNMMMMMMMMMMMMMMMyoo+so/..-/++osssyyyyyyyyyyyyyyyyssysyyysssyyysyysy
 	view = "15x15"
 	hub = "Exadv1.spacestation13"
 	hub_password = "kMZy3U5jJHSiBQjr"
-	name = "Pocket Stronghold 13"
+	name = "Pocket Civ"
 	fps = 20
 #ifdef FIND_REF_NO_CHECK_TICK
 	loop_checks = FALSE
 #endif
+
+/proc/get_packaged_server_status_data()
+	. = ""
+	. += "<b>Server Status</b>: Online"
+	. += ";"
+	. += "<b>Address</b>: byond://[world.internet_address]:[world.port]"
+	. += ";"
+	. += "<b>Map</b>: [GLOB_MAP_CONFIG.map_name ? GLOB_MAP_CONFIG.map_name : "???"]"
+	. += ";"
+	. += "<b>Gamemode</b>: ["Dwarves"]"
+	. += ";"
+	. += "<b>Players</b>: [GLOB.clients.len]" // turns out the bot only considers itself a player sometimes? its weird. Maybe it was fixed, not sure - Kachnov
+	/*
+	if (config.useapprovedlist)
+		. += ";"
+		. += "<b>Approved only</b>: Enabled"
+	*/
+	. += ";"
+	. += "realtime=[world.time]"
+	. += ";"
+	. += "world.address=[world.address]"
+	. += ";"
+	. += "round_timer=[time_stamp()]"
+	. += ";"
+	if (GLOB_MAP_CONFIG)
+		. += "map=[GLOB_MAP_CONFIG.map_name]"
+		. += ";"
+		. += "epoch=["???"]"
+		. += ";"
+		. += "season=["???"]"
+		. += ";"
+	. += "ckey_list=[list2params(GLOB.clients)]"
+	. += ";"
+	. += "round_id=[GLOB.round_id]"
+	. += ";"

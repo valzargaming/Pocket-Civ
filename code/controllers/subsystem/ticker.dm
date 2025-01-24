@@ -273,6 +273,7 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, span_notice("<B>[station_name()]</B> is accepting guests!"))
+	start_serverdata_loop()
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -306,6 +307,14 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score)] hardcore random points if you survive this round!"))
 
 //These callbacks will fire after roundstart key transfer
+
+/proc/start_serverdata_loop()
+	var/F = file("serverdata.txt")
+	if (fexists("serverdata.txt"))
+		fdel(F)
+	F << get_packaged_server_status_data()
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(start_serverdata_loop)), 1)
+
 /datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
 	if(!HasRoundStarted())
 		LAZYADD(round_start_events, cb)
