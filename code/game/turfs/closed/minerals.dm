@@ -85,8 +85,8 @@
 		. = ..()
 
 /turf/closed/mineral/proc/gets_drilled(mob/user, give_exp = FALSE)
-	var/min_mod = user.mind ? user.mind.get_skill_modifier(/datum/skill/mining, SKILL_AMOUNT_MIN_MODIFIER) : 0
-	var/max_mod = user.mind ? user.mind.get_skill_modifier(/datum/skill/mining, SKILL_AMOUNT_MAX_MODIFIER) : 0
+	var/min_mod = user?.mind ? user.mind.get_skill_modifier(/datum/skill/mining, SKILL_AMOUNT_MIN_MODIFIER) : 0
+	var/max_mod = user?.mind ? user.mind.get_skill_modifier(/datum/skill/mining, SKILL_AMOUNT_MAX_MODIFIER) : 0
 	var/to_spawn = rand(mineralAmt+min_mod, mineralAmt+max_mod)
 	if (mineralType && (mineralAmt > 0) && ispath(mineralType, /obj/item/stack))
 		if(to_spawn > 1)
