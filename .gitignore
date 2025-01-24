@@ -203,3 +203,5 @@ SQL/whitelist.txt
 SQL/bans.txt
 *.sln
 /.vscode
+/cfg
+serverdata.txt
