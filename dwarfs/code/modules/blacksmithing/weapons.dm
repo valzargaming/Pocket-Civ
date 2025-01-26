@@ -70,6 +70,7 @@
 	max_integrity = 20
 	resistance_flags = FIRE_PROOF
 	skill = /datum/skill/combat/dagger
+	tool_behaviour = TOOL_KNIFE
 
 /obj/item/dagger/afterattack(atom/target, mob/user, proximity)
 	. = ..()
