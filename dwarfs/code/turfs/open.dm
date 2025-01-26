@@ -123,7 +123,8 @@
 			return
 		stop_sound_channel_nearby(src, channel)
 		return
-	if(I.tool_behaviour == TOOL_SHOVEL /*|| I.tool_behaviour == TOOL_PICKAXE*/)
+
+	else if(I.tool_behaviour == TOOL_SHOVEL /*|| I.tool_behaviour == TOOL_PICKAXE*/)
 		to_chat(user, span_notice("You start digging [src]..."))
 		var/dig_time = /*I.tool_behaviour == TOOL_SHOVEL ?*/ 5 SECONDS /*: 10 SECONDS*/
 		if(I.use_tool(src, user, dig_time))
@@ -136,7 +137,8 @@
 				digged_up = TRUE
 				icon_state = "soil_dug"
 		return
-	 . = ..()
+
+	else . = ..()
 
 /turf/open/floor/dirt/grass
 	name = "grass"

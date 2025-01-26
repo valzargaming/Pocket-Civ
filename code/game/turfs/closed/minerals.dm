@@ -142,7 +142,7 @@
 	return
 
 /turf/closed/mineral/random
-	mineralSpawnChanceList = list(
+	var/mineralSpawnChanceList = list(
 		/obj/item/stack/ore/smeltable/iron=65,
 		/obj/item/stack/ore/coal=45,
 		/obj/item/stack/ore/smeltable/gold=20,

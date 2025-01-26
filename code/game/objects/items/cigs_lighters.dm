@@ -269,7 +269,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
 	if(lit)
-		user.visible_message(span_notice("[user] calmly drops and treads on <b>[src.name]</b>, putting it out instantly.")\
+		user.visible_message(span_notice("[user] calmly drops and treads on <b>[src.name]</b>, putting it out instantly."), \
 			span_notice("You calmly drops and treads on <b>[src.name]</b>, putting it out instantly."))
 		new type_butt(user.loc)
 		new /obj/effect/decal/cleanable/ash(user.loc)

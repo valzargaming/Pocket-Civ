@@ -427,7 +427,7 @@
 	if(!bypass_timer && (!do_mob(user, target, 120) || user.zone_selected != BODY_ZONE_PRECISE_MOUTH))
 		if(user)
 			if(user == target)
-				user.visible_message(span_notice("[user] decided not to shoot.")\
+				user.visible_message(span_notice("[user] decided not to shoot."), \
 					span_notice("You decided not to shoot."))
 			else if(target?.Adjacent(user))
 				target.visible_message(span_notice("[user] has decided to spare [target]"), span_notice("[user] has decided to spare your life!"))
