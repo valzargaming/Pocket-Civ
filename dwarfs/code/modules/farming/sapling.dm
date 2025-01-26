@@ -2,8 +2,8 @@
 	name = "sapling"
 	desc = "Handle with care. Plant it ASAP otherwise it will die."
 	icon = 'dwarfs/icons/items/farming.dmi'
-	var/health
-	var/maxhealth
+	var/health = 40
+	var/maxhealth = 40
 	var/plant_type
 	var/growthstage
 	var/damagedelta = 5 SECONDS

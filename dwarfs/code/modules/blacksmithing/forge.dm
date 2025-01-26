@@ -63,9 +63,10 @@
 			to_chat(user, span_warning("[src] has to be lit up first."))
 			return
 		if(I.contents.len)
-			if(istype(I.contents[I.contents.len], /obj/item/ingot))
+			var/C = I.contents[I.contents.len]
+			if(istype(C, /obj/item/ingot))
 				if(do_after(user, 10, src))
-					var/obj/item/ingot/N = I.contents[I.contents.len]
+					var/obj/item/ingot/N = C
 					N.heattemp = 350
 					I.update_appearance()
 					to_chat(user, span_notice("You heat up [N]."))

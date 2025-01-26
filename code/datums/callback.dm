@@ -122,6 +122,7 @@
 	if (object == GLOBAL_PROC)
 		log_runtime("Calling proc: [delegate] on [object] with args: [calling_arguments]")
 		return call(delegate)(arglist(calling_arguments))
+	log_runtime("Calling proc: [delegate] on [object] with args: [calling_arguments]") // Troubleshoot by using log_world instead
 	return call(object, delegate)(arglist(calling_arguments))
 
 /**
