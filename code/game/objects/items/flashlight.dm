@@ -258,7 +258,7 @@
 
 /obj/item/flashlight/fueled/candle
 	name = "candle"
-	desc = "cAndLE"
+	desc = "candle"
 	w_class = WEIGHT_CLASS_TINY
 	light_range = 3
 	icon_state = "candle"
@@ -287,6 +287,9 @@
 	if(istype(I, /obj/item/flashlight/fueled/candle))
 		if(fuel)
 			to_chat(user, span_warning("[src] already has a candle inside."))
+			return
+		if (I.on)
+			to_chat(user, span_warning("[I] can't already be lit! (Debugging)"))
 			return
 		var/obj/item/flashlight/fueled/candle/C = I
 		fuel += C.fuel
