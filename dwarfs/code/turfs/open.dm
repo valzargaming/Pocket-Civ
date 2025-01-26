@@ -144,6 +144,18 @@
 	icon_state = "grass"
 
 /turf/open/floor/dirt/grass/attackby(obj/item/I, mob/user, params)
+	/*
+	if (istype(C, /obj/item/material/pitchfork))
+		user.visible_message(span_notice("[user] starts to remove the grass layer."), \
+			span_notice("[user] starts to remove the grass layer."), \
+			span_hear("You hear something being uprooted."))
+		if(do_after(user, 5 SECONDS, src))
+			user.visible_message(span_notice("[user] removes the grass layer."), \
+				span_notice("[user] removes the grass layer."), \
+				span_hear("You hear something being removed."))
+			ChangeTurf(/turf/open/floor/dirt)
+		return
+	*/
 	. = ..()
 
 /turf/open/floor/tilled
