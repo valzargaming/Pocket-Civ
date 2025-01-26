@@ -289,15 +289,13 @@
 		if(fuel)
 			to_chat(user, span_warning("[src] already has a candle inside."))
 			return
-		if (I.on)
-			to_chat(user, span_warning("[I] can't already be lit! (Debugging)"))
-			return
 		var/obj/item/flashlight/fueled/candle/C = I
 		fuel += C.fuel
 		if(C.on && !on)
 			on = TRUE
 			icon_state = "lantern_on"
 			damtype = BURN
+			update_brightness()
 			START_PROCESSING(SSobj, src)
 		qdel(C)
 	else
