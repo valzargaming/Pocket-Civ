@@ -19,6 +19,7 @@
 		var/obj/item/I = new food_inside(O.loc)
 		I.pixel_x = O.pixel_x
 		I.pixel_y = O.pixel_y
+		O.contents += I // Add the food item to the target container's contents
 		qdel(O)
 		to_chat(user, span_notice("You transfer [initial(food_inside.name)] into [O]."))
 		charges--
