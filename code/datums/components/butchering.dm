@@ -56,52 +56,55 @@
 	if(do_mob(user, M, speed*user.mind.get_skill_modifier(/datum/skill/skinning, SKILL_SPEED_MODIFIER)) && M.Adjacent(source))
 		Skin(user, M)
 
-/datum/component/butchering/proc/Skin(mob/living/butcher, mob/living/simple_animal/meat)
+/datum/component/butchering/proc/Skin(mob/living/butcher, mob/living/simple_animal/A)
 	var/full_chance = butcher.mind.get_skill_modifier(/datum/skill/skinning, SKILL_PROBS_MODIFIER)
 	var/damaged_chance = butcher.mind.get_skill_modifier(/datum/skill/skinning, SKILL_PROBS2_MODIFIER)
 	if(prob(full_chance))
-		butcher.visible_message(span_notice("[butcher] skins [meat]."), span_notice("You skin [meat]."))
-		new meat.hide_type (get_turf(meat))
+		butcher.visible_message(span_notice("[butcher] skins [A]."), \
+			span_notice("You skin [A]."))
+		new A.hide_type(get_turf(A))
 		butcher.mind.adjust_experience(/datum/skill/skinning, 37)
 	else if(prob(damaged_chance))
-		butcher.visible_message(span_notice("[butcher] poorly skins [meat]."), span_notice("You poorly skin [meat]."))
-		var/dam_hidetype = initial(meat.hide_type.damaged_type)
-		new dam_hidetype (get_turf(meat))
+		butcher.visible_message(span_notice("[butcher] poorly skins [A]."), \
+			span_notice("You poorly skin [A]."))
+		var/dam_hidetype = initial(A.hide_type.damaged_type)
+		new dam_hidetype(get_turf(A))
 		butcher.mind.adjust_experience(/datum/skill/skinning, 19)
 	else
-		butcher.visible_message(span_notice("[butcher] fails to skin [meat]."), span_warning("You fail to skin [meat]."))
+		butcher.visible_message(span_notice("[butcher] fails to skin [A]."), \
+			span_warning("You fail to skin [A]."))
 		butcher.mind.adjust_experience(/datum/skill/skinning, 7)
-	meat.skinned = TRUE
-	if(meat.icon_skinned)
-		meat.icon_state = meat.icon_skinned
+	A.skinned = TRUE
+	if(A.icon_skinned)
+		A.icon_state = A.icon_skinned
 
 /**
- * Handles a user butchering a target
+ * Handles the butchering of a target mob, producing loot based on butcher_results and the butcher's skill level
  *
  * Arguments:
  * - [butcher][/mob/living]: The mob doing the butchering
- * - [meat][/mob/living]: The mob being butchered
+ * - [A][/mob/living]: The mob being butchered
  */
-/datum/component/butchering/proc/Butcher(mob/living/butcher, mob/living/simple_animal/meat)
+/datum/component/butchering/proc/Butcher(mob/living/butcher, mob/living/simple_animal/A)
 	var/list/results = list()
-	var/turf/T = meat.drop_location()
+	var/turf/T = A.drop_location()
 	var/lower_modifier = butcher.mind.get_skill_modifier(/datum/skill/butchering, SKILL_AMOUNT_MIN_MODIFIER)
 	var/upper_modifier = butcher.mind.get_skill_modifier(/datum/skill/butchering, SKILL_AMOUNT_MAX_MODIFIER)
-	for(var/V in meat.butcher_results)
+	for(var/V in A.butcher_results)
 		var/obj/bones = V
-		var/amount_lower = meat.butcher_results[bones][1] + lower_modifier
-		var/amount_upper = meat.butcher_results[bones][2] + upper_modifier
+		var/amount_lower = A.butcher_results[bones][1] + lower_modifier
+		var/amount_upper = A.butcher_results[bones][2] + upper_modifier
 		if(amount_lower < 1 && amount_upper < 1)
 			continue
 		for(var/_i in 1 to rand(amount_lower, amount_upper))
 			results += new bones (T)
 			butcher.mind.adjust_experience(/datum/skill/butchering, 12)
 
-		meat.butcher_results.Remove(bones) //in case you want to, say, have it drop its results on gib
+		A.butcher_results.Remove(bones) //in case you want to, say, have it drop its results on gib
 
 	if(butcher)
-		butcher.visible_message(span_notice("[butcher] butchers [meat]."), \
-								span_notice("You butcher [meat]."))
-	butcher_callback?.Invoke(butcher, meat)
-	meat.harvest(butcher)
-	meat.gib(FALSE, FALSE, TRUE)
+		butcher.visible_message(span_notice("[butcher] butchers [A]."), \
+			span_notice("You butcher [A]."))
+	butcher_callback?.Invoke(butcher, A)
+	A.harvest(butcher)
+	A.gib(FALSE, FALSE, TRUE)
