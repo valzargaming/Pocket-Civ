@@ -991,6 +991,9 @@
  * the object has been admin edited
  */
 /atom/vv_edit_var(var_name, var_value)
+	var/old_light_flags = light_flags
+	// Disable frozen lights for now, so we can actually modify it
+	light_flags &= ~LIGHT_FROZEN
 	switch(var_name)
 		if(NAMEOF(src, light_range))
 			if(light_system == STATIC_LIGHT)
@@ -1029,6 +1032,7 @@
 			set_base_pixel_y(var_value)
 			. =  TRUE
 
+	light_flags = old_light_flags
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
 		return

@@ -137,11 +137,14 @@
 		return ..() //fucking turfs switch the fucking src of the fucking running procs
 	if(!ispath(path, /turf/open/floor))
 		return ..()
+	return ..()
+	/*
 	var/old_dir = dir
 	var/turf/open/floor/W = ..()
 	W?.setDir(old_dir)
-	W?.update_icon()
+	W?.update_appearance()
 	return W
+	*/
 
 /turf/open/floor/attackby(obj/item/I, mob/user, params)
 	if(!I || !user)

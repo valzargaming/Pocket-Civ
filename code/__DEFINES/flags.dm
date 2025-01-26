@@ -85,13 +85,22 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //TURF FLAGS
 /// If a turf cant be jaunted through.
 #define NOJAUNT (1<<0)
+/// If a turf is an unused reservation turf awaiting assignment
 #define UNUSED_RESERVATION_TURF (1<<1)
+/// If a turf is a reserved turf
+#define RESERVATION_TURF (1<<2)
 /// Blocks lava rivers being generated on the turf.
 #define NO_LAVA_GEN (1<<3)
 /// Blocks ruins spawning on the turf.
 #define NO_RUINS (1<<4)
 /// Should this tile be cleaned up and reinserted into an excited group?
 #define EXCITED_CLEANUP (1<<5)
+/// Is this turf is "solid". Space and lava aren't for instance
+#define IS_SOLID (1<<6)
+/// This turf will never be cleared away by other objects on Initialize.
+#define NO_CLEARING (1<<7)
+/// This atom is a pseudo-floor that blocks map generation's checkPlaceAtom() from placing things like trees ontop of it.
+#define TURF_BLOCKS_POPULATE_TERRAIN_FLORAFEATURES (1<<8)
 
 ////////////////Area flags\\\\\\\\\\\\\\
 /// If it's a valid territory for cult summoning or the CRAB-17 phone to spawn

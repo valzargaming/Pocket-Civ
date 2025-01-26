@@ -100,8 +100,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	if(always_lit)
 		add_overlay(GLOB.fullbright_overlay)
-
-	if (light_power && light_range)
+	else if (light_power && light_range)
 		update_light()
 
 	var/turf/T = SSmapping.get_turf_above(src)

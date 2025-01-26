@@ -314,7 +314,17 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/SetupSurfaceLighting()
 	for(var/area/A in world)
 		if(findtext(A.name, "surface"))
+			var/turf/T = get_turf(A)
+			if(T)
+				T.light_range = 2
+				if(!T.light)
+					T.light = new/datum/light_source(T, T)
+				if(!T.lighting_object)
+					new/datum/lighting_object(T)
+				T.generate_missing_corners()
+				T.lighting_build_overlay()
 			A.update_base_lighting()
+
 
 /proc/start_serverdata_loop()
 	var/F = file("serverdata.txt")

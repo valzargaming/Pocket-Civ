@@ -29,8 +29,8 @@
 	name = "rock"
 	desc = "Terrible."
 	icon_state = "stone"
-	slowdown = 0.7
 	baseturfs = /turf/open/lava
+	slowdown = 0.7
 	var/digged_up = FALSE
 
 /turf/open/floor/rock/ScrapeAway(amount, flags)
@@ -72,6 +72,11 @@
 			T.ChangeTurf(/turf/open/floor/stone)
 	else
 		. = ..()
+
+// Because the way the game handles lighting seems to be so fucked, we have to do this
+/turf/open/floor/rock/surface
+	light_power = 0.75
+	light_range = 2
 
 /turf/open/floor/sand
 	name = "sand"

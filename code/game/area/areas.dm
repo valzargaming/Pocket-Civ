@@ -56,6 +56,7 @@
 
 	//Lighting overlay
 	var/obj/effect/lighting_overlay
+	var/always_lit = FALSE
 
 	var/list/air_vent_info = list()
 	var/list/air_scrub_info = list()

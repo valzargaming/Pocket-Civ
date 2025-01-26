@@ -48,6 +48,8 @@
 
 /area/proc/remove_base_lighting()
 	for(var/turf/T in src)
+		if (T.always_lit)
+			continue
 		T.cut_overlay(lighting_effect)
 	QDEL_NULL(lighting_effect)
 	area_has_base_lighting = FALSE

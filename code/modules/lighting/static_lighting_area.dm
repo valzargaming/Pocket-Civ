@@ -19,8 +19,6 @@ GLOBAL_DATUM_INIT(fullbright_overlay, /mutable_appearance, create_fullbright_ove
 ///regenerates lighting objects for turfs in this area, primary use is VV changes
 /area/proc/create_area_lighting_objects()
 	for(var/turf/T in src)
-		if(T.always_lit)
-			continue
 		T.lighting_build_overlay()
 		CHECK_TICK
 

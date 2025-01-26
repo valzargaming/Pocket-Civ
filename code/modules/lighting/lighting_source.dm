@@ -221,6 +221,8 @@
 		var/oldlum = source_turf.luminosity
 		source_turf.luminosity = CEILING(light_range, 1)
 		for(var/turf/T in view(CEILING(light_range, 1), source_turf))
+			if (T.always_lit)
+				continue
 			if(!IS_OPAQUE_TURF(T))
 				if (!T.lighting_corners_initialised)
 					T.generate_missing_corners()
