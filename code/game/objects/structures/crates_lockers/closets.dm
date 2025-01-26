@@ -308,9 +308,9 @@
 			return
 		set_anchored(!anchored)
 		W.play_tool_sound(src, 75)
-		user.visible_message(span_notice("<b>[user]</b> [anchored ? "anchored" : "unanchored"] <b>[src.name]</b>.") , \
-						span_notice("You [anchored ? "anchored" : "unanchored"] <b>[src.name]</b>.") , \
-						span_hear("You hear clanging."))
+		user.visible_message(span_notice("<b>[user]</b> [anchored ? "anchored" : "unanchored"] <b>[src.name]</b>."), \
+			span_notice("You [anchored ? "anchored" : "unanchored"] <b>[src.name]</b>."), \
+			span_hear("You hear clanging."))
 	else
 		return FALSE
 
@@ -464,8 +464,8 @@
 			else
 				locked = !locked
 				playsound(src, 'sound/items/locker.ogg', 25, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
-				user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
-							span_notice("You [locked ? null : "un"]lock [src]."))
+				user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."), \
+					span_notice("You [locked ? null : "un"]lock [src]."))
 				update_icon()
 			return
 		else if(!silent)

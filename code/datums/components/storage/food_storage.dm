@@ -68,7 +68,7 @@
 		return
 
 	user.visible_message(span_notice("[user.name] begins inserting [inserted_item.name] into \the [parent]."), \
-					span_notice("You start to insert the [inserted_item.name] into \the [parent]."))
+		span_notice("You start to insert the [inserted_item.name] into \the [parent]."))
 
 	INVOKE_ASYNC(src, PROC_REF(insert_item), inserted_item, user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -94,7 +94,7 @@
 		return
 
 	user.visible_message(span_notice("[user.name] begins tearing at \the [parent]."), \
-					span_notice("You start to rip into \the [parent]."))
+		span_notice("You start to rip into \the [parent]."))
 
 	INVOKE_ASYNC(src, PROC_REF(begin_remove_item), user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN

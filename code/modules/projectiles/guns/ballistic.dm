@@ -342,7 +342,8 @@
 				user.dropItemToGround(src, TRUE)
 				return
 			flip_cooldown = (world.time + 30)
-			user.visible_message(span_notice("[user] spins the [src] around their finger by the trigger. That's pretty badass."))
+			user.visible_message(span_notice("[user] spins the [src] around their finger by the trigger. That's pretty badass."), \
+				span_notice("You spins the [src] around their finger by the trigger. That's pretty badass."))
 			playsound(src, 'sound/items/handling/ammobox_pickup.ogg', 20, FALSE)
 	if(!internal_magazine && magazine)
 		if(!magazine.ammo_count())
@@ -443,7 +444,8 @@
 		to_chat(user, span_warning("You cannot saw-off [src] with [bayonet] attached!"))
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message(span_notice("[user] begins to shorten [src]."), span_notice("You begin to shorten [src]..."))
+	user.visible_message(span_notice("[user] begins to shorten [src]."), \
+		span_notice("You begin to shorten [src]..."))
 
 	//if there's any live ammo inside the gun, makes it go off
 	if(blow_up(user))
@@ -453,7 +455,8 @@
 	if(do_after(user, 30, target = src))
 		if(sawn_off)
 			return
-		user.visible_message(span_notice("[user] shortens [src]!"), span_notice("You shorten [src]."))
+		user.visible_message(span_notice("[user] shortens [src]!"), \
+			span_notice("You shorten [src]."))
 		name = "sawn-off [src.name]"
 		desc = sawn_desc
 		w_class = WEIGHT_CLASS_NORMAL

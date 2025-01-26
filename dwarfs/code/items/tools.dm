@@ -238,8 +238,8 @@
 	switch(mode)
 		if(TROWEL_BUILD_WALL)
 			T.ChangeTurf(/turf/closed/wall/stone, /turf/open/floor/rock)
-			user.visible_message(span_notice("<b>[user]</b> constructs a stone wall.") , \
-								span_notice("You construct a stone wall."))
+			user.visible_message(span_notice("<b>[user]</b> constructs a stone wall."), \
+				span_notice("You construct a stone wall."))
 		if(TROWEL_BUILD_FLOOR)
 			if(isopenspace(T))
 				var/obj/L = locate(/obj/structure/lattice) in T
@@ -249,16 +249,18 @@
 				else
 					qdel(L)
 			T.ChangeTurf(/turf/open/floor/stone)
-			user.visible_message(span_notice("<b>[user]</b> constructs stone floor.") , \
-								span_notice("You construct stone floor."))
+			user.visible_message(span_notice("<b>[user]</b> constructs stone floor."), \
+				span_notice("You construct stone floor."))
 		if(TROWEL_BUILD_STAIRS)
 			var/obj/structure/stairs/S = new(T)
 			S.dir = user.dir
-			user.visible_message(span_notice("<b>[user]</b> constructs stone stairs."), span_notice("You construct stone stairs."))
+			user.visible_message(span_notice("<b>[user]</b> constructs stone stairs."), \
+				span_notice("You construct stone stairs."))
 		if(TROWEL_BUILD_DOOR)
 			var/obj/structure/mineral_door/heavystone/D = new(T)
 			D.dir = user.dir
-			user.visible_message(span_notice("<b>[user]</b> constructs stone door."), span_notice("You construct stone door."))
+			user.visible_message(span_notice("<b>[user]</b> constructs stone door."), \
+				span_notice("You construct stone door."))
 
 /obj/item/trowel/proc/do_job(atom/A, mob/user)
 	if(mode != TROWEL_BUILD_FLOOR && !isfloorturf(A))

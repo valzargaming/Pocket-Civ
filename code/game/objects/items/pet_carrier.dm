@@ -163,8 +163,8 @@
 	if(pet_carrier_full(src))
 		to_chat(user, span_warning("[capitalize(src.name)] is already carrying too much!"))
 		return
-	user.visible_message(span_notice("[user] starts loading [target] into [src].") , \
-	span_notice("You start loading [target] into [src]...") , null, null, target)
+	user.visible_message(span_notice("[user] starts loading [target] into [src]."), \
+		span_notice("You start loading [target] into [src]...") , null, null, target)
 	to_chat(target, span_userdanger("[user] starts loading you into [user.p_their()] [name]!"))
 	if(!do_mob(user, target, 30))
 		return
@@ -173,8 +173,8 @@
 	if(pet_carrier_full(src)) //Run the checks again, just in case
 		to_chat(user, span_warning("[capitalize(src.name)] is already carrying too much!"))
 		return
-	user.visible_message(span_notice("[user] loads [target] into [src]!") , \
-	span_notice("You load [target] into [src].") , null, null, target)
+	user.visible_message(span_notice("[user] loads [target] into [src]!"), \
+		span_notice("You load [target] into [src].") , null, null, target)
 	to_chat(target, span_userdanger("[user] loads you into [user.p_their()] [name]!"))
 	add_occupant(target)
 

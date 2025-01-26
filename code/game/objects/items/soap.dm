@@ -70,7 +70,8 @@
 	if(user.client && ((target in user.client.screen) && !user.is_holding(target)))
 		to_chat(user, span_warning("You need to take that [target.name] off before cleaning it!"))
 	else if(istype(target, /obj/effect/decal/cleanable))
-		user.visible_message(span_notice("[user] begins to scrub [target.name] out with [src].") , span_warning("You begin to scrub [target.name] out with [src]..."))
+		user.visible_message(span_notice("[user] begins to scrub [target.name] out with [src]."), \
+			span_warning("You begin to scrub [target.name] out with [src]..."))
 		if(do_after(user, clean_speedies, target = target))
 			to_chat(user, span_notice("You scrub [target.name] out."))
 			qdel(target)
@@ -85,7 +86,8 @@
 		decreaseUses(user)
 		return
 	else
-		user.visible_message(span_notice("[user] begins to clean [target.name] with [src]...") , span_notice("You begin to clean [target.name] with [src]..."))
+		user.visible_message(span_notice("[user] begins to clean [target.name] with [src]..."), \
+			span_notice("You begin to clean [target.name] with [src]..."))
 		if(do_after(user, clean_speedies, target = target))
 			to_chat(user, span_notice("You clean [target.name]."))
 			target.wash(CLEAN_SCRUB)

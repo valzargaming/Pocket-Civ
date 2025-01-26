@@ -144,9 +144,11 @@
 
 /obj/structure/ladder/proc/show_fluff_message(going_up, mob/user)
 	if(going_up)
-		user.visible_message(span_notice("[user] climbs up [src]."), span_notice("You climb up [src]."))
+		user.visible_message(span_notice("[user] climbs up [src]."), \
+			span_notice("You climb up [src]."))
 	else
-		user.visible_message(span_notice("[user] climbs down [src]."), span_notice("You climb down [src]."))
+		user.visible_message(span_notice("[user] climbs down [src]."), \
+			span_notice("You climb down [src]."))
 
 /obj/structure/ladder/crafted
 	crafted = TRUE

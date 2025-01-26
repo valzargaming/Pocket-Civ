@@ -269,7 +269,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/attack_self(mob/user)
 	if(lit)
-		user.visible_message(span_notice("[user] calmly drops and treads on <b>[src.name]</b>, putting it out instantly."))
+		user.visible_message(span_notice("[user] calmly drops and treads on <b>[src.name]</b>, putting it out instantly.")\
+			span_notice("You calmly drops and treads on <b>[src.name]</b>, putting it out instantly."))
 		new type_butt(user.loc)
 		new /obj/effect/decal/cleanable/ash(user.loc)
 		qdel(src)
@@ -387,7 +388,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(!lit)
 			set_lit(TRUE)
 			if(fancy)
-				user.visible_message(span_notice("Without even breaking stride, [user] flips open and lights [src] in one smooth movement.") , span_notice("Without even breaking stride, you flip open and light [src] in one smooth movement."))
+				user.visible_message(span_notice("Without even breaking stride, [user] flips open and lights [src] in one smooth movement."), \
+					span_notice("Without even breaking stride, you flip open and light [src] in one smooth movement."))
 			else
 				var/prot = FALSE
 				var/mob/living/carbon/human/H = user
@@ -400,7 +402,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					prot = TRUE
 
 				if(prot || prob(75))
-					user.visible_message(span_notice("After a few attempts, [user] manages to light [src].") , span_notice("After a few attempts, you manage to light [src]."))
+					user.visible_message(span_notice("After a few attempts, [user] manages to light [src]."), \
+						span_notice("After a few attempts, you manage to light [src]."))
 				else
 					var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 					user.apply_damage(5, BURN, hitzone)
@@ -410,9 +413,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			set_lit(FALSE)
 			if(fancy)
-				user.visible_message(span_notice("You hear a quiet click, as [user] shuts off [src] without even looking at what [user.p_theyre()] doing. Wow.") , span_notice("You quietly shut off [src] without even looking at what you're doing. Wow."))
+				user.visible_message(span_notice("You hear a quiet click, as [user] shuts off [src] without even looking at what [user.p_theyre()] doing. Wow."), \
+					span_notice("You quietly shut off [src] without even looking at what you're doing. Wow."))
 			else
-				user.visible_message(span_notice("[user] quietly shuts off [src].") , span_notice("You quietly shut off [src]."))
+				user.visible_message(span_notice("[user] quietly shuts off [src]."), \
+					span_notice("You quietly shut off [src]."))
 	else
 		. = ..()
 

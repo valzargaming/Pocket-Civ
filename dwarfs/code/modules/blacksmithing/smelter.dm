@@ -90,7 +90,8 @@
 	else if(I.get_fuel())
 		fuel += I.get_fuel()
 		qdel(I)
-		user.visible_message(span_notice("[user] throws [I] into [src]."), span_notice("You throw [I] into [src]."))
+		user.visible_message(span_notice("[user] throws [I] into [src]."), \
+			span_notice("You throw [I] into [src]."))
 		update_appearance()
 	else
 		. = ..()

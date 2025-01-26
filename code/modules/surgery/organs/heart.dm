@@ -41,7 +41,8 @@
 /obj/item/organ/heart/attack_self(mob/user)
 	..()
 	if(!beating)
-		user.visible_message(span_notice("[user] squeezes [src]!") ,span_notice("You squeeze [src] to make it beat again!"))
+		user.visible_message(span_notice("[user] squeezes [src]!"), \
+			span_notice("You squeeze [src] to make it beat again!"))
 		Restart()
 		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 80)
 

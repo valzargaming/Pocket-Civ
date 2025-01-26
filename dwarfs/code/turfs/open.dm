@@ -57,8 +57,8 @@
 						FE.pixel_y = rand(-8, 8)
 				digged_up = TRUE
 				icon_state = "stone_dug"
-				user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \
-									span_notice("You dig up some stones."))
+				user.visible_message(span_notice("<b>[user]</b> digs up some stones."), \
+					span_notice("You dig up some stones."))
 	if(I.tool_behaviour == TOOL_CHISEL)
 		if(digged_up)
 			to_chat(user, span_warning("Nice try mongoid."))
@@ -94,7 +94,7 @@
 				new/obj/item/stack/ore/smeltable/sand(src, rand(3,6))
 				digged_up = TRUE
 				icon_state = "sand_dug"
-				user.visible_message(span_notice("<b>[user]</b> digs up some stones.") , \
+				user.visible_message(span_notice("<b>[user]</b> digs up some stones."), \
 					span_notice("You dig up some stones."))
 	else
 		. = ..()
@@ -120,21 +120,22 @@
 				T.waterlevel = T.watermax
 				T.update_appearance()
 			user.mind.adjust_experience(/datum/skill/farming, 7)
-		else
-			stop_sound_channel_nearby(src, channel)
-	else if(I.tool_behaviour == TOOL_SHOVEL || I.tool_behaviour == TOOL_PICKAXE)
+			return
+		stop_sound_channel_nearby(src, channel)
+		return
+	if(I.tool_behaviour == TOOL_SHOVEL /*|| I.tool_behaviour == TOOL_PICKAXE*/)
 		to_chat(user, span_notice("You start digging [src]..."))
-		var/dig_time = I.tool_behaviour == TOOL_SHOVEL ? 5 SECONDS : 10 SECONDS
+		var/dig_time = /*I.tool_behaviour == TOOL_SHOVEL ?*/ 5 SECONDS /*: 10 SECONDS*/
 		if(I.use_tool(src, user, dig_time))
 			if(digged_up)
 				try_digdown(I,user)
 			else
 				new/obj/item/stack/dirt(src, rand(2,5))
-				user.visible_message(span_notice("<b>[user]</b> digs up some dirt.") , \
+				user.visible_message(span_notice("<b>[user]</b> digs up some dirt."), \
 					span_notice("You dig up some dirt."))
 				digged_up = TRUE
 				icon_state = "soil_dug"
-	else
+		return
 	 . = ..()
 
 /turf/open/floor/dirt/grass
@@ -218,10 +219,11 @@
 			return
 
 	else if(I.tool_behaviour == TOOL_SHOVEL)
-		user.visible_message(span_notice("[user] starts digging out [src]'s plants...") ,
+		user.visible_message(span_notice("[user] starts digging out [src]'s plants..."), \
 			span_notice("You start digging out [src]'s plants..."))
 		if(I.use_tool(src, user, 50, volume=50) || !myplant)
-			user.visible_message(span_notice("[user] digs out the plants in [src]!") , span_notice("You dig out all of [src]'s plants!"))
+			user.visible_message(span_notice("[user] digs out the plants in [src]!"), \
+				span_notice("You dig out all of [src]'s plants!"))
 			if(myplant) //Could be that they're just using it as a de-weeder
 				QDEL_NULL(myplant)
 				name = initial(name)
@@ -229,7 +231,8 @@
 			update_appearance()
 			return
 	else if(istype(I, /obj/item/fertilizer))
-		user.visible_message(span_notice("[user] adds [I] to \the [src]."), span_notice("You add [I] to \the [src]."))
+		user.visible_message(span_notice("[user] adds [I] to \the [src]."), \
+			span_notice("You add [I] to \the [src]."))
 		var/obj/item/fertilizer/F = I
 		fertlevel = clamp(fertlevel+F.fertilizer, 0, fertmax)
 		qdel(F)

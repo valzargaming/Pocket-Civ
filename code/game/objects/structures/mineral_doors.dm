@@ -136,12 +136,14 @@
 		to_chat(user, span_warning("[capitalize(src.name)] is still firmly secured to the ground!"))
 		return
 
-	user.visible_message(span_notice("[user] starts to pry apart [src]!") , span_notice("You start prying apart [src]."))
+	user.visible_message(span_notice("[user] starts to pry apart [src]!"), \
+		span_notice("You start prying apart [src]."))
 	if(!I.use_tool(src, user, 60, volume = 50))
 		to_chat(user, span_warning("You failed to pry apart [src]!"))
 		return
 
-	user.visible_message(span_notice("[user] pried [src] into pieces!") , span_notice("You pried apart [src]!"))
+	user.visible_message(span_notice("[user] pried [src] into pieces!"), \
+		span_notice("You pried apart [src]!"))
 	deconstruct(TRUE)
 
 

@@ -54,7 +54,8 @@
 		return
 
 	if(T)
-		user.visible_message(span_notice("[user] begins to clean \the [T] with [src]."), span_notice("You begin to clean \the [T] with [src]..."))
+		user.visible_message(span_notice("[user] begins to clean \the [T] with [src]."), \
+			span_notice("You begin to clean \the [T] with [src]..."))
 		var/clean_speedies = 1
 		if(do_after(user, mopspeed*clean_speedies, target = T))
 			to_chat(user, span_notice("You finish mopping."))

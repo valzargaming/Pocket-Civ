@@ -230,7 +230,8 @@
 	if(!is_type_in_list(I, food_type))
 		return ..()
 
-	user.visible_message(span_notice("<b>[user]</b> hand feeds <b>[src]</b> with [I].") , span_notice("You hand feed <b>[src]</b> with [I]."))
+	user.visible_message(span_notice("<b>[user]</b> hand feeds <b>[src]</b> with [I]."), \
+		span_notice("You hand feed <b>[src]</b> with [I]."))
 	qdel(I)
 	if(tame)
 		return

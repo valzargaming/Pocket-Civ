@@ -125,7 +125,7 @@
 						to_chat(user, span_notice("There's nothing inside your mouth."))
 
 				else
-					user.visible_message(span_notice("[user] directs [src] to [M]'s mouth."),\
+					user.visible_message(span_notice("[user] directs [src] to [M]'s mouth."), \
 						span_notice("You direct [src] to [M]'s mouth."))
 					if(organ_count)
 						to_chat(user, span_notice("Inside [their] mouth [organ_count > 1 ? "are" : "is"] [organ_list]."))
@@ -207,7 +207,8 @@
 	. = ..()
 	// All good, turn it on.
 	if(.)
-		user.visible_message(span_notice("[user] ignites [src].") , span_notice("You ignite [src]!"))
+		user.visible_message(span_notice("[user] ignites [src]."), \
+			span_notice("You ignite [src]!"))
 		force = on_damage
 		damtype = BURN
 		START_PROCESSING(SSobj, src)

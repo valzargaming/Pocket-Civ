@@ -73,7 +73,7 @@
 				else
 					tablepush(user, pushed_mob)
 			if(user.a_intent == INTENT_HELP)
-				pushed_mob.visible_message(span_notice("<b>[user]</b> begins to place <b>[pushed_mob]</b> onto <b>[src]</b>...") , \
+				pushed_mob.visible_message(span_notice("<b>[user]</b> begins to place <b>[pushed_mob]</b> onto <b>[src]</b>..."), \
 									span_userdanger("<b>[user]</b> begins to place <b>you</b> onto <b>[src]</b>..."))
 				if(do_after(user, 35, target = pushed_mob))
 					tableplace(user, pushed_mob)
@@ -83,7 +83,7 @@
 		else if(user.pulling.pass_flags & PASSTABLE)
 			user.Move_Pulled(src)
 			if (user.pulling.loc == loc)
-				user.visible_message(span_notice("<b>[user]</b> places <b>[user.pulling]</b> onto <b>[src]</b>.") ,
+				user.visible_message(span_notice("<b>[user]</b> places <b>[user.pulling]</b> onto <b>[src]</b>."),
 					span_notice("You place <b>[user.pulling]</b> onto <b>[src]</b>."))
 				user.stop_pulling()
 	if(user.a_intent == INTENT_HARM)

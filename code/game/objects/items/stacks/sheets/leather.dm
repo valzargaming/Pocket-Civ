@@ -119,7 +119,9 @@ GLOBAL_LIST_INIT(leather_recipes, list (
 /obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user, params)
 	if(W.get_sharpness())
 		playsound(loc, 'sound/weapons/slice.ogg', 50, TRUE, -1)
-		user.visible_message(span_notice("<b>[user]</b> starts cutting hair off \the <b>[src]</b>.") , span_notice("You start cutting hair off \the <b>[src]</b>...") , span_hear("You hear the sound of a knife rubbing against flesh."))
+		user.visible_message(span_notice("<b>[user]</b> starts cutting hair off \the <b>[src]</b>."), \
+			span_notice("You start cutting hair off \the <b>[src]</b>..."), \
+			span_hear("You hear the sound of a knife rubbing against flesh."))
 		if(do_after(user, 50, target = src))
 			to_chat(user, span_notice("You cut the hair from this [src.singular_name]."))
 			var/obj/item/stack/sheet/hairlesshide/H = new (user.drop_location(), 1)

@@ -45,7 +45,8 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(I.get_fuel())
-		user.visible_message(span_notice("[user] throws [I] into [src]."), span_notice("You throw [I] into [src]."))
+		user.visible_message(span_notice("[user] throws [I] into [src]."), \
+			span_notice("You throw [I] into [src]."))
 		fuel+=I.get_fuel()
 		qdel(I)
 		update_appearance()

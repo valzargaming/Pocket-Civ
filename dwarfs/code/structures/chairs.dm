@@ -14,8 +14,8 @@
 /obj/structure/chair/comfy/stone/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
 		W.play_tool_sound(src)
-		user.visible_message(span_notice("[user] tries to disasseble stone chair using <b>wrench</b>.") , \
-		span_notice("You try to disassemble stone chair..."))
+		user.visible_message(span_notice("[user] tries to disasseble stone chair using <b>wrench</b>."), \
+			span_notice("You try to disassemble stone chair..."))
 		return
 	else
 		return ..()

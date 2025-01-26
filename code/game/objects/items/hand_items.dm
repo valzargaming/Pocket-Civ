@@ -244,7 +244,8 @@
 	else
 		user.do_attack_animation(the_table)
 		playsound(get_turf(the_table), 'sound/effects/tableslam.ogg', 40, TRUE)
-		user.visible_message(span_notice("[user] slaps [user.p_their()] hand on [the_table]."), span_notice("You slap your hand on [the_table]."), vision_distance=COMBAT_MESSAGE_RANGE)
+		user.visible_message(span_notice("[user] slaps [user.p_their()] hand on [the_table]."), \
+			span_notice("You slap your hand on [the_table]."), vision_distance=COMBAT_MESSAGE_RANGE)
 		table_smacks_left--
 		if(table_smacks_left <= 0)
 			qdel(src)

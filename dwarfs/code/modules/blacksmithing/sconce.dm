@@ -19,9 +19,8 @@
 /obj/item/sconce/proc/attach(turf/on_wall, mob/user)
 	if(result_path)
 		playsound(src.loc, 'sound/machines/click.ogg', 75, TRUE)
-		user.visible_message(span_notice("[user.name] attaches [src] to the wall.") ,
-			span_notice("You attach the handle to the wall.") ,
-			span_hear("You hear a metal click."))
+		user.visible_message(span_notice("[user.name] attaches [src] to the wall."), \
+			span_notice("You attach the handle to the wall."), span_hear("You hear a metal click."))
 		var/ndir = get_dir(on_wall, user)
 
 		new result_path(get_turf(user), ndir)

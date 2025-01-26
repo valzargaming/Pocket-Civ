@@ -102,7 +102,8 @@
 			to_chat(user, span_warning("[src] has to be opened first."))
 			return
 		fuel += I.get_fuel()
-		user.visible_message(span_notice("[user] throws [I] into [src]."), span_notice("You throw [I] into [src]."))
+		user.visible_message(span_notice("[user] throws [I] into [src]."), \
+			span_notice("You throw [I] into [src]."))
 		qdel(I)
 		update_appearance()
 	else

@@ -101,10 +101,11 @@
 			to_chat(user, span_warning("[capitalize(src.name)] already has seeds in it!"))
 			return
 	else if(I.tool_behaviour == TOOL_SHOVEL)
-		user.visible_message(span_notice("[user] starts digging out [src]'s plants...") ,
+		user.visible_message(span_notice("[user] starts digging out [src]'s plants..."), \
 			span_notice("You start digging out [src]'s plants..."))
 		if(I.use_tool(src, user, 50, volume=50) || !myplant)
-			user.visible_message(span_notice("[user] digs out the plants in [src]!"), span_notice("You dig out all of [src]'s plants!"))
+			user.visible_message(span_notice("[user] digs out the plants in [src]!"), \
+				span_notice("You dig out all of [src]'s plants!"))
 			if(myplant) //Could be that they're just using it as a de-weeder
 				QDEL_NULL(myplant)
 				name = initial(name)

@@ -55,7 +55,8 @@
 		if(ismineralturf(TD))
 			TD.ScrapeAway()
 		ChangeTurf(/turf/open/openspace)
-		user.visible_message(span_notice("[user] digs out a hole in the ground."), span_notice("You dig out a hole in the ground."))
+		user.visible_message(span_notice("[user] digs out a hole in the ground."), \
+			span_notice("You dig out a hole in the ground."))
 	else
 		to_chat(user, span_warning("Something very dense underneath!"))
 
