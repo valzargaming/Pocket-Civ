@@ -40,7 +40,9 @@
 	icon_state = "sconce_empty"
 	layer = BELOW_MOB_LAYER
 	max_integrity = 100
+	var/light_range_boost = 5
 	var/obj/item/flashlight/fueled/torch/torch
+	var/obj/item/stack/sheet/mineral/gem/glowgem
 
 /obj/structure/sconce/Initialize(mapload, ndir=null)
 	. = ..()
@@ -61,35 +63,43 @@
 
 /obj/structure/sconce/update_icon_state()
 	. = ..()
-	if(!torch)
+	if(!torch && !glowgem)
 		icon_state = "sconce_empty"
-	else if(torch.on)
-		icon_state = "sconce_on"
-	else
+		return;
+	if (torch)
+		if(torch.on)
+			icon_state = "sconce_on"
+			return
 		if(torch.fuel)
 			icon_state = "sconce_off"
-		else
-			icon_state = "sconce_burned"
+			return
+		icon_state = "sconce_burned"
+		return
+	if (glowgem)
+		icon_state = "sconce_glowgem"
 
 /obj/structure/sconce/update_appearance(updates)
 	. = ..()
 	_update_light()
 
 /obj/structure/sconce/proc/_update_light()
-	if(!torch)
-		set_light(0, 0, 0)
-	else
+	if(torch)
 		if(torch.on)
-			set_light(9, 1, TORCH_LIGHT_COLOR)
-		else
-			set_light(0, 0, 0)
+			set_light(torch.light_range+light_range_boost, torch.light_power, torch.light_color)
+			return
+	if(glowgem)
+		set_light(glowgem.light_range+light_range_boost, glowgem.light_power, glowgem.light_color)
+		return
+	set_light(0, 0, 0)
 
 
 /obj/structure/sconce/attackby(obj/item/W, mob/living/user, params)
-
 	if(istype(W, /obj/item/flashlight/fueled/torch))
 		if(torch)
 			to_chat(user, span_warning("There is a torch already!"))
+			return
+		if(glowgem)
+			to_chat(user, span_warning("There is a glowgem already!"))
 			return
 		src.add_fingerprint(user)
 		var/obj/item/flashlight/fueled/torch/L = W
@@ -98,6 +108,22 @@
 		src.add_fingerprint(user)
 		to_chat(user, span_notice("You place [L] inside."))
 		torch = L
+		L.forceMove(src)
+		update_appearance()
+	else if(istype(W, /obj/item/stack/sheet/mineral/gem/glowgem))
+		if(torch)
+			to_chat(user, span_warning("There is a torch already!"))
+			return
+		if(glowgem)
+			to_chat(user, span_warning("There is a glowgem already!"))
+			return
+		src.add_fingerprint(user)
+		var/obj/item/stack/sheet/mineral/gem/glowgem/L = W
+		if(!user.temporarilyRemoveItemFromInventory(L))
+			return
+		src.add_fingerprint(user)
+		to_chat(user, span_notice("You place [L] inside."))
+		glowgem = L
 		L.forceMove(src)
 		update_appearance()
 	else
@@ -110,10 +136,17 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	add_fingerprint(user)
 
-	if(!torch)
-		to_chat(user, span_warning("There is no torch!"))
+	if(torch)
+		torch.add_fingerprint(user)
+		user.put_in_active_hand(torch)
+		torch = null
+		update_appearance()
 		return
-	torch.add_fingerprint(user)
-	user.put_in_active_hand(torch)
-	torch = null
-	update_appearance()
+	else if(glowgem)
+		glowgem.add_fingerprint(user)
+		user.put_in_active_hand(glowgem)
+		glowgem = null
+		update_appearance()
+		return
+	to_chat(user, span_warning("There is no torch or glowgem!"))
+
