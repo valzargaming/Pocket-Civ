@@ -201,8 +201,8 @@
 					ingot.grade = 5
 					if(prob(10))
 						ingot.grade = 6
-				var/obj/item/O = new ingot.recipe.result(get_turf(holder.my_atom))
-				O.apply_grade(ingot.grade)
+				var/obj/item/I = new ingot.recipe.result(get_turf(holder.my_atom))
+				I.apply_grade(ingot.grade)
 			var/obj/item/tongs/T = ingot.loc
 			qdel(ingot)
 			if(T)

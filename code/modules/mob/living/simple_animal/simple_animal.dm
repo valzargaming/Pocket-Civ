@@ -226,12 +226,12 @@
 
 	return ..()
 
-/mob/living/simple_animal/attackby(obj/item/O, mob/user, params)
-	if(!is_type_in_list(O, food_type))
+/mob/living/simple_animal/attackby(obj/item/I, mob/user, params)
+	if(!is_type_in_list(I, food_type))
 		return ..()
 
-	user.visible_message(span_notice("<b>[user]</b> hand feeds <b>[src]</b> with [O].") , span_notice("You hand feed <b>[src]</b> with [O]."))
-	qdel(O)
+	user.visible_message(span_notice("<b>[user]</b> hand feeds <b>[src]</b> with [I].") , span_notice("You hand feed <b>[src]</b> with [I]."))
+	qdel(I)
 	if(tame)
 		return
 	if (prob(tame_chance)) //note: lack of feedback message is deliberate, keep them guessing!

@@ -16,7 +16,7 @@
 				return TRUE
 
 /obj/structure/closet/crate/sarcophagus/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/shovel) && locked)
+	if(I.tool_behaviour == TOOL_SHOVEL && locked)
 		to_chat(user, span_notice("You start opening [src]..."))
 		if(do_after(user, 30 SECONDS, src))
 			anchored = FALSE

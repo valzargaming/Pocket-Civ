@@ -70,7 +70,7 @@
 	desc = "A sturdy tree that produces delicious apples. Its wood is highly valued by dwarves for crafting."
 	species = "apple"
 	produced = list(/obj/item/growable/apple=4)
-	seed_type = /obj/item/growable/seeds/tree/apple
+	//seed_type = /obj/item/growable/seeds/tree/apple // Don't want it to be harvestable directly from the tree
 	health = 100
 	icon_ripe = "apple-3"
 	growthstages = 3

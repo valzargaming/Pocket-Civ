@@ -16,7 +16,8 @@
 	var/mood_gain = -2
 	var/mood_duration = 2 MINUTES
 	var/fuel_value = 1
-	var/extract_tool = /obj/item/kitchen/knife
+	var/extract_tool = FALSE
+	var/extract_tool_type = TOOL_KNIFE
 	var/extract_time = 1 SECONDS
 	var/seed = FALSE // /obj/item/growable/seeds/tree/apple
 	var/byproduct = FALSE // /obj/item/growable/apple/core
@@ -99,10 +100,8 @@
 	seed = /obj/item/growable/seeds/tree/apple
 	byproduct = FALSE
 
-/obj/item/growable/attackby(obj/item/O, mob/user, params)
-	if(!extract_tool)
-		return ..()
-	if(istype(O, extract_tool))
+/obj/item/growable/attackby(obj/item/I, mob/user, params)
+	if((extract_tool_type && I.tool_behaviour == extract_tool_type) || (extract_tool && istype(I, extract_tool)))
 		if(seed)
 			to_chat(user, span_notice("You start carefully extracting the seeds from [src]..."))
 			if(do_after(user, extract_time))
@@ -112,6 +111,8 @@
 					var/B = new byproduct(get_turf(user))
 					to_chat(user, span_notice("You discard the leftover [B]."))
 				qdel(src)
+		return
+	return ..()
 
 /obj/item/growable/apple/core/get_fuel()
 	return fuel_value

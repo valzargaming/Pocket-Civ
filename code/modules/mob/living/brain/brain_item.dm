@@ -69,16 +69,16 @@
 		L.mind.transfer_to(brainmob)
 	to_chat(brainmob, span_notice("You feel a bit dizzy. Probably because you are a brain?"))
 
-/obj/item/organ/brain/attackby(obj/item/O, mob/user, params)
+/obj/item/organ/brain/attackby(obj/item/I, mob/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	if(brainmob) //if we aren't trying to heal the brain, pass the attack onto the brainmob.
-		O.attack(brainmob, user) //Oh noooeeeee
+		I.attack(brainmob, user) //Oh noooeeeee
 
-	if(O.force != 0 && !(O.item_flags & NOBLUDGEON))
+	if(I.force != 0 && !(I.item_flags & NOBLUDGEON))
 		setOrganDamage(maxHealth) //fails the brain as the brain was attacked, they're pretty fragile.
-		visible_message(span_danger("[user] hits [src.name] with [O]!"))
-		to_chat(user, span_danger("You hit [src.name] with [O]!"))
+		visible_message(span_danger("[user] hits [src.name] with [I]!"))
+		to_chat(user, span_danger("You hit [src.name] with [I]!"))
 
 /obj/item/organ/brain/examine(mob/user)
 	. = ..()

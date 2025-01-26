@@ -196,13 +196,14 @@
 		QDEL_NULL(myplant)
 	return ..()
 
-/turf/open/floor/tilled/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/growable/seeds))
+/turf/open/floor/tilled/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/growable/seeds))
 		if(!myplant)
-			if(istype(O, /obj/item/growable/seeds/tree))
-				to_chat(user, span_warning("Cannot plant this here!"))
-				return
-			var/obj/item/growable/seeds/S = O
+			if(istype(I, /obj/item/growable/seeds/tree))
+				if(! istype(loc, /area/dwarf/surfacegen))
+					to_chat(user, span_warning("Cannot plant this here!"))
+					return
+			var/obj/item/growable/seeds/S = I
 			to_chat(user, span_notice("You plant [S]."))
 			var/obj/structure/plant/P = new S.plant(src)
 			qdel(S)
@@ -216,10 +217,10 @@
 			to_chat(user, span_warning("[capitalize(src.name)] already has seeds in it!"))
 			return
 
-	else if(istype(O, /obj/item/shovel))
+	else if(I.tool_behaviour == TOOL_SHOVEL)
 		user.visible_message(span_notice("[user] starts digging out [src]'s plants...") ,
 			span_notice("You start digging out [src]'s plants..."))
-		if(O.use_tool(src, user, 50, volume=50) || !myplant)
+		if(I.use_tool(src, user, 50, volume=50) || !myplant)
 			user.visible_message(span_notice("[user] digs out the plants in [src]!") , span_notice("You dig out all of [src]'s plants!"))
 			if(myplant) //Could be that they're just using it as a de-weeder
 				QDEL_NULL(myplant)
@@ -227,22 +228,22 @@
 				desc = initial(desc)
 			update_appearance()
 			return
-	else if(istype(O, /obj/item/fertilizer))
-		user.visible_message(span_notice("[user] adds [O] to \the [src]."), span_notice("You add [O] to \the [src]."))
-		var/obj/item/fertilizer/F = O
+	else if(istype(I, /obj/item/fertilizer))
+		user.visible_message(span_notice("[user] adds [I] to \the [src]."), span_notice("You add [I] to \the [src]."))
+		var/obj/item/fertilizer/F = I
 		fertlevel = clamp(fertlevel+F.fertilizer, 0, fertmax)
 		qdel(F)
-	else if(O.is_refillable())
-		var/datum/reagent/W = O.reagents.has_reagent(/datum/reagent/water)
+	else if(I.is_refillable())
+		var/datum/reagent/W = I.reagents.has_reagent(/datum/reagent/water)
 		if(!W)
-			to_chat(user, span_warning("[O] doesn't have water!"))
+			to_chat(user, span_warning("[I] doesn't have water!"))
 			return
 		var/needed = watermax-waterlevel
 		if(needed < 10)
 			to_chat(user, span_warning("[src] has enough water already."))
 			return
 		var/to_remove = W.volume <= needed ? W.volume : needed
-		O.reagents.remove_reagent(/datum/reagent/water, to_remove)
+		I.reagents.remove_reagent(/datum/reagent/water, to_remove)
 		to_chat(user, span_notice("You water [src]."))
 		waterlevel = clamp(waterlevel+to_remove, 0, watermax)
 		user.mind.adjust_experience(/datum/skill/farming, rand(1,5))

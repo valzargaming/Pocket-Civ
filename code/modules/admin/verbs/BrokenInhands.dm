@@ -1,31 +1,31 @@
 /proc/getbrokeninhands()
 	var/text
 	for(var/A in typesof(/obj/item))
-		var/obj/item/O = new A( locate(1,1,1) )
-		if(!O)
+		var/obj/item/I = new A(locate(1,1,1) )
+		if(!I)
 			continue
-		var/icon/IL = new(O.lefthand_file)
+		var/icon/IL = new(I.lefthand_file)
 		var/list/Lstates = IL.IconStates()
-		var/icon/IR = new(O.righthand_file)
+		var/icon/IR = new(I.righthand_file)
 		var/list/Rstates = IR.IconStates()
-		var/icon/J = new(O.icon)
+		var/icon/J = new(I.icon)
 		var/list/istates = J.IconStates()
-		if(!Lstates.Find(O.icon_state) && !Lstates.Find(O.inhand_icon_state))
-			if(O.icon_state)
-				text += "[O.type] WANTS IN LEFT HAND CALLED\n\"[O.icon_state]\".\n"
-		if(!Rstates.Find(O.icon_state) && !Rstates.Find(O.inhand_icon_state))
-			if(O.icon_state)
-				text += "[O.type] WANTS IN RIGHT HAND CALLED\n\"[O.icon_state]\".\n"
+		if(!Lstates.Find(I.icon_state) && !Lstates.Find(I.inhand_icon_state))
+			if(I.icon_state)
+				text += "[I.type] WANTS IN LEFT HAND CALLED\n\"[I.icon_state]\".\n"
+		if(!Rstates.Find(I.icon_state) && !Rstates.Find(I.inhand_icon_state))
+			if(I.icon_state)
+				text += "[I.type] WANTS IN RIGHT HAND CALLED\n\"[I.icon_state]\".\n"
 
 
-		if(O.icon_state)
-			if(!istates.Find(O.icon_state))
-				text += "[O.type] MISSING NORMAL ICON CALLED\n\"[O.icon_state]\" IN \"[O.icon]\"\n"
-		if(O.inhand_icon_state)
-			if(!istates.Find(O.inhand_icon_state))
-				text += "[O.type] MISSING NORMAL ICON CALLED\n\"[O.inhand_icon_state]\" IN \"[O.icon]\"\n"
+		if(I.icon_state)
+			if(!istates.Find(I.icon_state))
+				text += "[I.type] MISSING NIRMAL ICON CALLED\n\"[I.icon_state]\" IN \"[I.icon]\"\n"
+		if(I.inhand_icon_state)
+			if(!istates.Find(I.inhand_icon_state))
+				text += "[I.type] MISSING NIRMAL ICON CALLED\n\"[I.inhand_icon_state]\" IN \"[I.icon]\"\n"
 		text+="\n"
-		qdel(O)
+		qdel(I)
 	if(text)
 		var/F = file("broken_icons.txt")
 		fdel(F)

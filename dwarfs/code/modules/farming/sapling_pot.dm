@@ -76,16 +76,16 @@
 			water_text+="Looks extremely dry."
 	.+=water_text
 
-/obj/structure/sapling_pot/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/growable/seeds))
+/obj/structure/sapling_pot/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/growable/seeds))
 		if(!myplant)
-			if(!istype(O, /obj/item/growable/seeds/tree))
+			if(!istype(I, /obj/item/growable/seeds/tree))
 				to_chat(user, span_warning("Cannot plant this here!"))
 				return
 			if(!has_dirt)
 				to_chat(user, span_warning("[src] doens't have any soil inside!"))
 				return
-			var/obj/item/growable/seeds/S = O
+			var/obj/item/growable/seeds/S = I
 			to_chat(user, span_notice("You plant [S]."))
 			var/obj/structure/plant/P = new S.plant()
 			qdel(S)
@@ -100,32 +100,32 @@
 		else
 			to_chat(user, span_warning("[capitalize(src.name)] already has seeds in it!"))
 			return
-	else if(O.tool_behaviour == TOOL_SHOVEL)
+	else if(I.tool_behaviour == TOOL_SHOVEL)
 		user.visible_message(span_notice("[user] starts digging out [src]'s plants...") ,
 			span_notice("You start digging out [src]'s plants..."))
-		if(O.use_tool(src, user, 50, volume=50) || !myplant)
-			user.visible_message(span_notice("[user] digs out the plants in [src]!") , span_notice("You dig out all of [src]'s plants!"))
+		if(I.use_tool(src, user, 50, volume=50) || !myplant)
+			user.visible_message(span_notice("[user] digs out the plants in [src]!"), span_notice("You dig out all of [src]'s plants!"))
 			if(myplant) //Could be that they're just using it as a de-weeder
 				QDEL_NULL(myplant)
 				name = initial(name)
 				desc = initial(desc)
 			update_appearance()
 			return
-	else if(istype(O, /obj/item/stack/dirt))
+	else if(istype(I, /obj/item/stack/dirt))
 		if(has_dirt)
 			to_chat(user, span_warning("[src] already has dirt inside!"))
 			return
-		var/obj/item/stack/D = O
+		var/obj/item/stack/D = I
 		if(D.use(5))
 			to_chat(user, span_notice("You fill [src] with dirt."))
 			has_dirt = TRUE
 			update_appearance()
 		else
 			to_chat(user, span_notice("You need at least 5 dirt to fill [src]!"))
-	else if(O.is_refillable())
-		var/datum/reagent/W = O.reagents.has_reagent(/datum/reagent/water)
+	else if(I.is_refillable())
+		var/datum/reagent/W = I.reagents.has_reagent(/datum/reagent/water)
 		if(!W)
-			to_chat(user, span_warning("[O] doesn't have any water."))
+			to_chat(user, span_warning("[I] doesn't have any water."))
 			return
 		if(!has_dirt)
 			to_chat(user, span_warning("[src] doesn't have any dirt."))
@@ -135,7 +135,7 @@
 			to_chat(user, span_warning("[src] has enough water already."))
 			return
 		var/to_trans = W.volume <= needed ? W.volume : needed
-		O.reagents.remove_reagent(/datum/reagent/water, to_trans)
+		I.reagents.remove_reagent(/datum/reagent/water, to_trans)
 		waterlevel += to_trans
 		to_chat(user, span_notice("You water [src]."))
 		user.mind.adjust_experience(/datum/skill/farming, rand(1,5))

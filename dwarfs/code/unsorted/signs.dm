@@ -39,7 +39,7 @@
 	. += "<hr><span style='color:[text_color]'>[sign_text]</span>"
 
 /obj/structure/sign/attacked_by(obj/item/I, mob/living/user)
-	if(istype(I,/obj/item/chisel))
+	if(I.tool_behaviour == TOOL_CHISEL)
 		ui_interact(usr)
 		// var/to_write = input(usr,"What would you like to write?") as text
 		// var/add_decal_1 = tgui_alert(usr,"Add decal 1", "question", sign_decals + "None")
