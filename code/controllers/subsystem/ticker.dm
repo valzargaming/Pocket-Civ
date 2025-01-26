@@ -280,6 +280,8 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
+	SetupSurfaceLighting()
+
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
@@ -307,6 +309,12 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score)] hardcore random points if you survive this round!"))
 
 //These callbacks will fire after roundstart key transfer
+
+//The light will stay off otherwise
+/datum/controller/subsystem/ticker/proc/SetupSurfaceLighting()
+	for(var/area/A in world)
+		if(findtext(A.name, "surface"))
+			A.update_base_lighting()
 
 /proc/start_serverdata_loop()
 	var/F = file("serverdata.txt")
