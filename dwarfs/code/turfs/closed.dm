@@ -6,8 +6,7 @@
 	environment_type = "stone_raw"
 	turf_type = /turf/open/floor/rock
 	baseturfs = /turf/open/floor/rock
-	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 65, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/gem/glowgem=10,/obj/item/stack/ore/coal=45)
-	mineralChance = 1
+	mineralChance = 1.5
 
 /turf/closed/mineral/random/dwarf_lustress/gets_drilled(user, give_exp = FALSE)
 	. = ..()
@@ -35,8 +34,7 @@
 
 /turf/closed/mineral/random/sand
 	name = "sand"
-	mineralSpawnChanceList = list(/obj/item/stack/ore/smeltable/gold = 20, /obj/item/stack/ore/smeltable/iron = 65, /obj/item/stack/ore/gem/diamond=10,/obj/item/stack/ore/gem/ruby=10,/obj/item/stack/ore/gem/sapphire=10,/obj/item/stack/ore/gem/glowgem=10,/obj/item/stack/ore/coal=45)
-	mineralChance = 1.5
+	mineralChance = 0.5
 	baseturfs = /turf/open/floor/sand
 	smooth_icon = 'dwarfs/icons/turf/walls_sandstone.dmi'
 	base_icon_state = "rockwall"
