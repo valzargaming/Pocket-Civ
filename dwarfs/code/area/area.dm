@@ -18,5 +18,6 @@
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/dwarf/fortress/surface
+	name = "Surface"
 	static_lighting = TRUE
 	base_lighting_alpha = 255
